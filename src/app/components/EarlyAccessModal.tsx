@@ -85,7 +85,12 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
               </p>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form
+                name="join-the-rebellion"
+                data-mythos-form="join-the-rebellion"
+                onSubmit={handleSubmit}
+                className="space-y-5"
+              >
                 <div>
                   <label htmlFor="email" className="block text-sm text-[#B0B0B0] mb-2">
                     Email address *

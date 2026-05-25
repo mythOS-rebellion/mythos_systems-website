@@ -18,6 +18,7 @@ import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { InvestorDeckModal } from './InvestorDeckModal';
 import { DeckViewerModal } from './DeckViewerModal';
+import { track } from '../../lib/track';
 
 function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   return (
@@ -91,7 +92,7 @@ export function InvestorPage() {
         <div className="relative mx-auto max-w-6xl">
           <Reveal>
             <Eyebrow>MythOS · Bridge Round · May 2026</Eyebrow>
-            <h1 className="mythos-headline-medium whitespace-nowrap text-white">
+            <h1 className="mythos-headline-medium text-white sm:whitespace-nowrap">
               What if we told you unicorns are real?
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#B0B0B0]">
@@ -130,14 +131,14 @@ export function InvestorPage() {
                 </div>
                 <div className="flex flex-shrink-0 flex-col gap-3 sm:flex-row">
                   <button
-                    onClick={() => setDeckOpen(true)}
+                    onClick={() => { track('investors-view-deck', { placement: 'hero' }); setDeckOpen(true); }}
                     className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0047FF] px-8 py-4 font-semibold text-white transition-all hover:gap-4 hover:shadow-xl hover:shadow-[#0047FF]/40"
                   >
                     <Play size={20} fill="currentColor" />
                     View the Deck
                   </button>
                   <button
-                    onClick={() => setRequestOpen(true)}
+                    onClick={() => { track('investors-request-copy', { placement: 'hero' }); setRequestOpen(true); }}
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition-colors hover:bg-white/10"
                   >
                     <FileText size={18} />
@@ -349,14 +350,14 @@ export function InvestorPage() {
             <h2 className="mythos-headline-medium text-white">Start a conversation.</h2>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <button
-                onClick={() => setDeckOpen(true)}
+                onClick={() => { track('investors-view-deck', { placement: 'contact' }); setDeckOpen(true); }}
                 className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0047FF] px-8 py-4 font-semibold text-white transition-all hover:gap-4"
               >
                 <Play size={18} fill="currentColor" />
                 View the Deck
               </button>
               <button
-                onClick={() => setRequestOpen(true)}
+                onClick={() => { track('investors-request-copy', { placement: 'contact' }); setRequestOpen(true); }}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition-colors hover:bg-white/10"
               >
                 Request the deck & intro <ArrowRight size={18} />
@@ -366,12 +367,12 @@ export function InvestorPage() {
               <p className="font-semibold text-white">Nate Adams</p>
               <p className="text-sm">Founder &amp; CEO · MythOS Systems</p>
               <p className="text-sm">
-                <a href="mailto:nateadams@mythosrebellion.com" className="underline decoration-white/20 transition-colors hover:text-white hover:decoration-white">
+                <a href="mailto:nateadams@mythosrebellion.com" data-mythos-track="investors-contact-email" className="underline decoration-white/20 transition-colors hover:text-white hover:decoration-white">
                   nateadams@mythosrebellion.com
                 </a>
               </p>
               <p className="text-sm">
-                <a href="tel:+12144309485" className="underline decoration-white/20 transition-colors hover:text-white hover:decoration-white">
+                <a href="tel:+12144309485" data-mythos-track="investors-contact-phone" className="underline decoration-white/20 transition-colors hover:text-white hover:decoration-white">
                   214-430-9485
                 </a>
               </p>

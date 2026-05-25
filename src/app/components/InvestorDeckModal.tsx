@@ -113,7 +113,12 @@ export function InvestorDeckModal({ isOpen, onClose }: InvestorDeckModalProps) {
                 Tell us a bit about yourself and we'll send you our investor deck.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+                name="investor-request-copy"
+                data-mythos-form="investor-request-copy"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
                 {/* Full Name */}
                 <div>
                   <label htmlFor="full_name" className="block text-white font-medium mb-2">

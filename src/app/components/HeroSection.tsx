@@ -5,11 +5,18 @@ import mythosLogoBackground from 'figma:asset/603c0e6525b97496065a3d319d8d238106
 import { EarlyAccessModal } from './EarlyAccessModal';
 import CityPulseBackground from './CityPulseBackground';
 import { HoverBorderGradient } from './ui/hover-border-gradient';
+import { track } from '../../lib/track';
 
 export function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleJoinRebellionClick = () => {
+    track('hero-join-the-rebellion');
+    setIsModalOpen(true);
+  };
+
   const handleInvestorClick = () => {
+    track('hero-become-a-partner');
     (window as any).navigateTo?.('partner');
   };
 
@@ -61,7 +68,7 @@ export function HeroSection() {
             <div className="flex flex-col items-center gap-2">
               <HoverBorderGradient
                 as="button"
-                onClick={() => setIsModalOpen(true)}
+                onClick={handleJoinRebellionClick}
                 containerClassName="rounded-full"
                 className="bg-[#0047FF] text-white px-8 py-4 flex items-center gap-3"
                 duration={1}
