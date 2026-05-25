@@ -1,6 +1,6 @@
 import { motion, useInView } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { EarlyAccessModal } from "../EarlyAccessModal";
 
 /* ---------------- WordsPullUp ---------------- */
@@ -86,6 +86,18 @@ const goTo = (page: string) => (window as any).navigateTo?.(page);
 
 const MythosHero = () => {
   const [isEarlyAccessOpen, setIsEarlyAccessOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const videoSrc = isMobile ? "/mythos-hero-mobile.mp4" : "/mythos-site.mp4";
 
   return (
     <>
@@ -94,12 +106,13 @@ const MythosHero = () => {
 
           {/* Background video */}
           <video
+            key={videoSrc}
             autoPlay
             loop
             muted
             playsInline
             className="absolute inset-0 h-full w-full object-cover"
-            src="/mythos-site.mp4"
+            src={videoSrc}
           />
 
           {/* Noise overlay */}
