@@ -1,219 +1,389 @@
+import { useState, type ReactNode } from 'react';
+import { motion } from 'motion/react';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Play,
+  FileText,
+  ScanFace,
+  Hand,
+  Sparkles,
+  Eye,
+  Glasses,
+  Wallet,
+  Volume2,
+  Mic,
+} from 'lucide-react';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
-import { ArrowLeft } from 'lucide-react';
-import marketBreakdownImage from 'figma:asset/e727667a189a41947835a54a63ec66de6fc9200e.png';
-import revenueModelImage from 'figma:asset/d249db809f8fd3a89b5acf6694df028194d89681.png';
 import { InvestorDeckModal } from './InvestorDeckModal';
-import { useState } from 'react';
+import { DeckViewerModal } from './DeckViewerModal';
+
+function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  return (
+    <motion.div
+      initial={{ y: 24, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function Eyebrow({ children, color = '#0047FF' }: { children: ReactNode; color?: string }) {
+  return (
+    <div className="mb-5 inline-flex items-center gap-2">
+      <span className="h-2 w-2 rounded-full" style={{ background: color, boxShadow: `0 0 10px ${color}` }} />
+      <span className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color }}>
+        {children}
+      </span>
+    </div>
+  );
+}
 
 export function InvestorPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const handleBackToHome = () => {
-    (window as any).navigateTo?.('home');
-  };
+  const [deckOpen, setDeckOpen] = useState(false);
+  const [requestOpen, setRequestOpen] = useState(false);
+
+  const pillars = [
+    { label: 'The market', desc: '$7–10B in smart mirrors, $120B+ in smart glasses, multi-trillion globally. We sit on top of all of it.', color: '#0047FF' },
+    { label: 'The moat', desc: 'Five reinforcing edges: SaaS depth, hardware lock-in, 0.7% payments, a consumer network, and one AI brain.', color: '#9D4EDD' },
+    { label: 'The entry', desc: 'A $500K bridge today, ahead of a priced $3–5M round. Early — by design.', color: '#FF4500' },
+  ];
+
+  const mirrorSteps = [
+    { icon: <Eye size={20} />, title: 'Client sits down', desc: 'The mirror activates — no app, no friction.' },
+    { icon: <ScanFace size={20} />, title: 'Face capture & analysis', desc: 'It reads face shape, hair, and features in seconds.' },
+    { icon: <Hand size={20} />, title: 'Browse styles by gesture', desc: 'Flip through cuts and colors with a wave of the hand.' },
+    { icon: <Sparkles size={20} />, title: 'AI previews them', desc: 'Generates a photo-real preview of the client with the cut.' },
+    { icon: <Volume2 size={20} />, title: 'Streaming mode', desc: 'After the consult, the mirror becomes their screen — directional speakers keep the sound in that chair, never bleeding into the next one.' },
+    { icon: <Mic size={20} />, title: 'Talk with Mylo', desc: 'The same AI brain that runs the shop lives in the mirror — clients just talk to Mylo, hands-free.' },
+  ];
+
+  const builds = [
+    {
+      icon: <Glasses size={22} />,
+      name: 'Mylo Glasses',
+      tag: 'Wearable',
+      desc: 'Hands-free AI for the operator — Mylo in your ear and in your line of sight.',
+      color: '#9D4EDD',
+    },
+    {
+      icon: <Wallet size={22} />,
+      name: 'MythOS Wallet',
+      tag: 'Payments',
+      desc: 'Payments at 0.7% — undercutting the transaction tax and closing the loop.',
+      color: '#FF4500',
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
       <Navigation />
-      
-      {/* Back to home link */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
-        <button 
-          onClick={handleBackToHome}
-          className="flex items-center gap-2 text-[#B0B0B0] hover:text-white transition-colors mb-8"
-        >
-          <ArrowLeft size={20} />
-          <span>Back to home</span>
-        </button>
-      </div>
 
-      {/* Hero Section */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="mythos-headline-large text-white mb-6">
-          Investing in the infrastructure of local economies
-        </h1>
-      </section>
-
-      {/* Why MythOS */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/10">
-        <h2 className="mythos-headline-medium text-white mb-8">
-          Why MythOS
-        </h2>
-        <div className="space-y-6 text-[#B0B0B0] mythos-body-base max-w-2xl">
-          <p>
-            Local economies are fragmented. Small businesses are overpowered by large platforms. Cities lack shared digital infrastructure.
-          </p>
-          <p>
-            There is a need for local-first systems that compound city by city.
-          </p>
-        </div>
-      </section>
-
-      {/* What We're Building */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/10">
-        <h2 className="mythos-headline-medium text-white mb-8">
-          What We're Building
-        </h2>
-        <div className="space-y-4 max-w-2xl">
-          <div className="flex gap-4">
-            <div className="w-1.5 bg-[#0047FF] flex-shrink-0"></div>
-            <p className="text-[#B0B0B0] mythos-body-base">
-              A consumer-facing local city network
+      {/* ===== 1. HOOK ===== */}
+      <section className="relative overflow-hidden border-b border-white/10 px-4 pt-32 pb-20 sm:px-6 lg:px-8">
+        <div className="pointer-events-none absolute -right-32 -top-24 h-[420px] w-[420px] rounded-full bg-[#0047FF]/10 blur-3xl" />
+        <div className="pointer-events-none absolute -left-24 bottom-0 h-[360px] w-[360px] rounded-full bg-[#FF4500]/[0.06] blur-3xl" />
+        <div className="relative mx-auto max-w-6xl">
+          <Reveal>
+            <Eyebrow>MythOS · Bridge Round · May 2026</Eyebrow>
+            <h1 className="mythos-headline-medium whitespace-nowrap text-white">
+              What if we told you unicorns are real?
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#B0B0B0]">
+              Every generational company looked obvious in hindsight and absurd at the time. MythOS is building the
+              operating system for local economies — software, hardware, and payments that compound city by city.
+              The bridge round is your seat at the table before the priced round.
             </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-3">
+            {pillars.map((t, i) => (
+              <Reveal key={t.label} delay={0.1 + i * 0.08}>
+                <div className="h-full rounded-xl border border-white/10 bg-[#111] p-6">
+                  <div className="mb-3 h-1 w-10" style={{ background: t.color }} />
+                  <h3 className="mb-2 text-lg font-bold text-white">{t.label}</h3>
+                  <p className="text-sm leading-relaxed text-[#B0B0B0]">{t.desc}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
-          <div className="flex gap-4">
-            <div className="w-1.5 bg-[#0047FF] flex-shrink-0"></div>
-            <p className="text-[#B0B0B0] mythos-body-base">
-              A business operating system for small businesses
+        </div>
+      </section>
+
+      {/* ===== 2. VIEW THE DECK ===== */}
+      <section className="border-b border-white/10 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-2xl border border-[#0047FF]/30 bg-gradient-to-br from-[#0047FF]/10 via-[#0A0A0A] to-[#9D4EDD]/10 p-8 sm:p-12">
+              <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
+                <div className="max-w-xl">
+                  <Eyebrow>The thesis · 21 slides</Eyebrow>
+                  <h2 className="mythos-headline-medium text-white">The whole story, in five minutes.</h2>
+                  <p className="mt-4 text-[#B0B0B0]">
+                    The problem, the operating system, the hardware, the traction, and the ask — read it right here.
+                  </p>
+                </div>
+                <div className="flex flex-shrink-0 flex-col gap-3 sm:flex-row">
+                  <button
+                    onClick={() => setDeckOpen(true)}
+                    className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0047FF] px-8 py-4 font-semibold text-white transition-all hover:gap-4 hover:shadow-xl hover:shadow-[#0047FF]/40"
+                  >
+                    <Play size={20} fill="currentColor" />
+                    View the Deck
+                  </button>
+                  <button
+                    onClick={() => setRequestOpen(true)}
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition-colors hover:bg-white/10"
+                  >
+                    <FileText size={18} />
+                    Request a copy
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ===== 3. THE MIRROR / HARDWARE ===== */}
+      <section className="border-b border-white/10 px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <Reveal>
+            <Eyebrow color="#9D4EDD">The hardware</Eyebrow>
+            <h2 className="mythos-headline-large max-w-3xl text-white">A smart mirror at every chair.</h2>
+            <p className="mt-5 max-w-2xl text-lg text-[#B0B0B0]">
+              Software gets copied. Hardware gets installed. The MythOS Mirror turns every barber and salon chair into
+              an AI experience — and a moat.
             </p>
+          </Reveal>
+
+          <div className="mt-12 grid items-center gap-10 lg:grid-cols-2">
+            {/* Mirror image (placeholder until asset added) */}
+            <Reveal>
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10">
+                <img
+                  src="/mirror.png"
+                  alt="The MythOS Smart Mirror — in-chair hairstyle preview"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </Reveal>
+
+            {/* In-chair experience */}
+            <div className="space-y-6">
+              {mirrorSteps.map((s, i) => (
+                <Reveal key={s.title} delay={i * 0.08}>
+                  <div className="flex gap-4">
+                    <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-[#0047FF]/40 bg-[#0047FF]/10 text-[#0047FF]">
+                      {s.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white">{s.title}</h3>
+                      <p className="text-sm text-[#B0B0B0]">{s.desc}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+              <Reveal delay={0.3}>
+                <p className="border-l-2 border-[#FF4500] pl-4 text-sm italic text-[#B0B0B0]">
+                  "Decide with confidence. Cut with confidence." Six mirrors per shop means switching off MythOS is a
+                  hardware rip-out — that's the moat.
+                </p>
+              </Reveal>
+            </div>
           </div>
-          <div className="flex gap-4">
-            <div className="w-1.5 bg-[#0047FF] flex-shrink-0"></div>
-            <p className="text-[#B0B0B0] mythos-body-base">
-              Shared digital infrastructure that scales city by city
+
+          {/* See it live — Minty Barber */}
+          <Reveal>
+            <div className="mt-12 flex flex-col items-start gap-4 rounded-xl border border-[#0047FF]/30 bg-[#0047FF]/5 p-6 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-[#B0B0B0]">
+                Want to see our AI try-on tech in action? See it live on one of our customers' websites:
+              </p>
+              <a
+                href="https://www.mintybarber.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-[#0047FF] px-6 py-3 font-semibold text-white transition-all hover:gap-3"
+              >
+                Visit Minty Barber
+                <ArrowUpRight size={18} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            </div>
+          </Reveal>
+
+          {/* Two more builds */}
+          <Reveal>
+            <p className="mt-16 mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-[#707070]">
+              And two more builds on the roadmap
             </p>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {builds.map((b, i) => (
+              <Reveal key={b.name} delay={i * 0.1}>
+                <div className="flex h-full items-start gap-4 rounded-xl border border-white/10 bg-[#111] p-6">
+                  <div
+                    className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg"
+                    style={{ background: `${b.color}1A`, color: b.color }}
+                  >
+                    {b.icon}
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-bold text-white">{b.name}</h3>
+                      <span className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] uppercase tracking-wider text-[#707070]">
+                        {b.tag}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm text-[#B0B0B0]">{b.desc}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Current Status */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/10">
-        <h2 className="mythos-headline-medium text-white mb-8">
-          Current Status
-        </h2>
-        <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
-          <div className="bg-[#1A1A1A] border border-white/10 p-6 rounded">
-            <p className="text-white font-medium mb-2">MythOS Pro MVP in development set to launch soon. The Network MVP built and in app store (waiting for public launch).</p>
-            <p className="text-[#B0B0B0] text-sm">Building the core infrastructure</p>
+      {/* ===== 4. BIG TECH TAX REPORT ===== */}
+      <section className="border-b border-white/10 px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <Reveal>
+            <Eyebrow color="#FF4500">Research project · in partnership with UT Dallas</Eyebrow>
+            <h2 className="mythos-headline-large max-w-3xl text-white">
+              How much is <span className="text-[#FF4500]">Big Tech</span> costing your business?
+            </h2>
+            <p className="mt-5 max-w-2xl text-lg text-[#B0B0B0]">
+              We're quantifying the "Visibility Tax" — what local businesses are forced to spend just to be found
+              online — straight from the source.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-3">
+            {[
+              { num: '$238B', label: 'Google ad revenue in 2023 alone' },
+              { num: '72%', label: 'of SMBs say ad costs rose year over year' },
+              { num: '1,000s', label: 'of owner interviews feeding the report' },
+            ].map((s, i) => (
+              <Reveal key={s.label} delay={i * 0.08}>
+                <div className="rounded-xl border border-white/10 bg-[#111] p-6">
+                  <div className="mythos-stat-number bg-gradient-to-b from-white to-[#8cb4d8] bg-clip-text text-transparent">
+                    {s.num}
+                  </div>
+                  <p className="mt-2 text-sm text-[#B0B0B0]">{s.label}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
-          <div className="bg-[#1A1A1A] border border-white/10 p-6 rounded">
-            <p className="text-white font-medium mb-2">Early access list is live</p>
-            <p className="text-[#B0B0B0] text-sm">Growing city by city interest</p>
-            <p className="text-[#B0B0B0] text-sm">Collecting LOIs and Signed commitments</p>
-            <p className="text-[#B0B0B0] text-sm">Testing with Beta Users</p>
-          </div>
-          <div className="bg-[#1A1A1A] border border-white/10 p-6 rounded">
-            <p className="text-white font-medium mb-2">City by city rollout planned</p>
-            <p className="text-[#B0B0B0] text-sm">MythOS Pro launches first in Dallas and San Diego, Then The Network launches in San Diego</p>
-          </div>
-          <div className="bg-[#1A1A1A] border border-white/10 p-6 rounded">
-            <p className="text-white font-medium mb-2">Engaging strategic partners</p>
-            <p className="text-[#B0B0B0] text-sm">Building the right foundation</p>
+          <Reveal>
+            <p className="mt-6 text-sm text-[#707070]">
+              The findings become the wedge: every dollar of "tax" we document is a dollar MythOS gives back.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ===== 5. TRACTION ===== */}
+      <section className="border-b border-white/10 px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <Reveal>
+            <Eyebrow>Traction</Eyebrow>
+          </Reveal>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { num: '2,732', label: 'unique humans already in the ecosystem' },
+              { num: '11,974', label: 'customers reachable through partners' },
+              { num: 'MVP', label: 'The Network MVP built — public launch ahead' },
+              { num: 'LOIs', label: 'signed commitments from local businesses' },
+            ].map((s, i) => (
+              <Reveal key={s.label} delay={i * 0.07}>
+                <div className="h-full rounded-xl border border-white/10 bg-[#111] p-6">
+                  <div className="mythos-headline-medium text-white">{s.num}</div>
+                  <p className="mt-2 text-sm text-[#B0B0B0]">{s.label}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Market Breakdown & Revenue Model */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/10">
-        <h2 className="mythos-headline-medium text-white mb-12 text-center">
-          Market Opportunity
-        </h2>
-        <div className="space-y-8">
-          {/* San Diego Market Breakdown */}
-          <div className="bg-[#111111] border border-[#0047FF]/30 rounded-lg overflow-hidden">
-            <img 
-              src={marketBreakdownImage} 
-              alt="San Diego Market Breakdown" 
-              className="w-full h-auto"
-            />
-          </div>
-          
-          {/* Year 1 Revenue Model */}
-          <div className="bg-[#111111] border border-[#0047FF]/30 rounded-lg overflow-hidden">
-            <img 
-              src={revenueModelImage} 
-              alt="Year 1 Revenue Model" 
-              className="w-full h-auto"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Investor Fit */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/10">
-        <h2 className="mythos-headline-medium text-white mb-8">
-          Investor Fit
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8 max-w-3xl">
-          {/* Good fit */}
-          <div>
-            <h3 className="text-[#9D4EDD] font-semibold mb-4">Good fit if you are:</h3>
-            <ul className="space-y-3 text-[#B0B0B0] mythos-body-base">
-              <li className="flex gap-3">
-                <span className="text-[#9D4EDD] flex-shrink-0">→</span>
-                <span>Long-term oriented</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-[#9D4EDD] flex-shrink-0">→</span>
-                <span>An operator, founder, or strategic thinker</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-[#9D4EDD] flex-shrink-0">→</span>
-                <span>Interested in rebuilding local economies through infrastructure</span>
-              </li>
-            </ul>
-          </div>
-          
-          {/* Not a fit */}
-          <div>
-            <h3 className="text-[#FF4500] font-semibold mb-4">Not a fit if you are:</h3>
-            <ul className="space-y-3 text-[#B0B0B0] mythos-body-base">
-              <li className="flex gap-3">
-                <span className="text-[#FF4500] flex-shrink-0">→</span>
-                <span>Looking for short-term hype or quick exits</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-[#FF4500] flex-shrink-0">→</span>
-                <span>Unaligned with long-term, city-first systems</span>
-              </li>
-            </ul>
+      {/* ===== 6. THE ASK ===== */}
+      <section className="border-b border-white/10 px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <Reveal>
+              <Eyebrow>The ask</Eyebrow>
+              <h2 className="mythos-headline-large text-white">
+                <span className="text-[#0047FF]">$500K</span> bridge to ship the proof.
+              </h2>
+              <p className="mt-5 max-w-md text-lg text-[#B0B0B0]">
+                Enough to put mirrors in real chairs, prove the unit economics in one city, and step into a priced
+                <span className="text-white"> $3–5M</span> round from strength.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="space-y-3">
+                {[
+                  { k: 'First mirror batch', v: 'Hardware in real shops' },
+                  { k: 'San Diego + Dallas', v: 'Prove the model city by city' },
+                  { k: 'The team', v: 'Ship faster, sign partners' },
+                ].map((row) => (
+                  <div key={row.k} className="flex items-center justify-between rounded-xl border border-white/10 bg-[#111] px-6 py-5">
+                    <span className="font-semibold text-white">{row.k}</span>
+                    <span className="text-right text-sm text-[#B0B0B0]">{row.v}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Investor CTA Section */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/10">
-        <div className="max-w-2xl">
-          {/* Primary CTA */}
-          <button 
-            className="w-full sm:w-auto px-12 py-4 bg-[#0047FF] text-white rounded font-semibold hover:bg-[#0047FF]/90 transition-all hover:shadow-xl hover:shadow-[#0047FF]/50 transform hover:-translate-y-0.5 mb-16"
-            onClick={() => setIsModalOpen(true)}
-          >
-            Request the Deck
-          </button>
-
-          {/* Secondary Contact */}
-          <div>
-            <h3 className="text-white font-medium mb-6 text-lg">
-              Start a conversation
-            </h3>
-            <div className="space-y-2 text-[#B0B0B0]">
-              <p className="text-white font-medium">Nate Adams</p>
-              <p className="text-sm">Founder & CEO</p>
+      {/* ===== 7. CONTACT ===== */}
+      <section className="px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <Reveal>
+            <h2 className="mythos-headline-medium text-white">Start a conversation.</h2>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <button
+                onClick={() => setDeckOpen(true)}
+                className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0047FF] px-8 py-4 font-semibold text-white transition-all hover:gap-4"
+              >
+                <Play size={18} fill="currentColor" />
+                View the Deck
+              </button>
+              <button
+                onClick={() => setRequestOpen(true)}
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Request the deck & intro <ArrowRight size={18} />
+              </button>
+            </div>
+            <div className="mt-10 space-y-1 text-[#B0B0B0]">
+              <p className="font-semibold text-white">Nate Adams</p>
+              <p className="text-sm">Founder &amp; CEO · MythOS Systems</p>
               <p className="text-sm">
-                <a 
-                  href="mailto:nateadams@mythosrebellion.com" 
-                  className="hover:text-white transition-colors underline decoration-white/20 hover:decoration-white"
-                >
+                <a href="mailto:nateadams@mythosrebellion.com" className="underline decoration-white/20 transition-colors hover:text-white hover:decoration-white">
                   nateadams@mythosrebellion.com
                 </a>
               </p>
               <p className="text-sm">
-                <a 
-                  href="tel:+12144309485" 
-                  className="hover:text-white transition-colors underline decoration-white/20 hover:decoration-white"
-                >
+                <a href="tel:+12144309485" className="underline decoration-white/20 transition-colors hover:text-white hover:decoration-white">
                   214-430-9485
                 </a>
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <Footer />
-      <InvestorDeckModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
+      <DeckViewerModal isOpen={deckOpen} onClose={() => setDeckOpen(false)} />
+      <InvestorDeckModal isOpen={requestOpen} onClose={() => setRequestOpen(false)} />
     </div>
   );
 }
