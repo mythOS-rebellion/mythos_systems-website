@@ -11,15 +11,51 @@ import { PartnerPage } from './pages/PartnerPage';
 
 type PageType = 'home' | 'products' | 'business' | 'about' | 'investors' | 'faq' | 'sandiego' | 'dfw' | 'partner';
 
-export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageType>('home');
+/** Map state-routing page names → URL paths. Plain home stays at "/". */
+const PATH_FOR: Record<PageType, string> = {
+  home: '/',
+  products: '/products',
+  business: '/for-businesses',
+  about: '/about',
+  investors: '/investors',
+  faq: '/faq',
+  sandiego: '/san-diego',
+  dfw: '/dfw',
+  partner: '/partner',
+};
 
-  // Make setCurrentPage available globally for navigation
+const PAGE_FOR_PATH = (() => {
+  const m: Record<string, PageType> = {};
+  for (const k of Object.keys(PATH_FOR) as PageType[]) m[PATH_FOR[k]] = k;
+  return m;
+})();
+
+function pageFromUrl(): PageType {
+  if (typeof window === 'undefined') return 'home';
+  return PAGE_FOR_PATH[window.location.pathname] ?? 'home';
+}
+
+export default function App() {
+  const [currentPage, setCurrentPage] = useState<PageType>(() => pageFromUrl());
+
+  // Make setCurrentPage available globally for navigation. The pushState
+  // call is what lets the analytics tracker (getinfo.js) register an SPA
+  // navigation as a page_view with the right url_path; without it every
+  // event records as "/".
   useEffect(() => {
     (window as any).navigateTo = (page: PageType) => {
+      const path = PATH_FOR[page] ?? '/';
+      if (window.location.pathname !== path) {
+        window.history.pushState({ page }, '', path);
+      }
       setCurrentPage(page);
       window.scrollTo(0, 0);
     };
+
+    // Honor back/forward by reading the URL.
+    const onPop = () => setCurrentPage(pageFromUrl());
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
   }, []);
 
   // Render the appropriate page

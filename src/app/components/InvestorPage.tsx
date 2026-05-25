@@ -18,7 +18,6 @@ import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { InvestorDeckModal } from './InvestorDeckModal';
 import { DeckViewerModal } from './DeckViewerModal';
-import { track } from '../../lib/track';
 
 function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   return (
@@ -131,14 +130,16 @@ export function InvestorPage() {
                 </div>
                 <div className="flex flex-shrink-0 flex-col gap-3 sm:flex-row">
                   <button
-                    onClick={() => { track('investors-view-deck', { placement: 'hero' }); setDeckOpen(true); }}
+                    onClick={() => setDeckOpen(true)}
+                    data-mythos-track="investors-view-deck-hero"
                     className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0047FF] px-8 py-4 font-semibold text-white transition-all hover:gap-4 hover:shadow-xl hover:shadow-[#0047FF]/40"
                   >
                     <Play size={20} fill="currentColor" />
                     View the Deck
                   </button>
                   <button
-                    onClick={() => { track('investors-request-copy', { placement: 'hero' }); setRequestOpen(true); }}
+                    onClick={() => setRequestOpen(true)}
+                    data-mythos-track="investors-request-copy-hero"
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition-colors hover:bg-white/10"
                   >
                     <FileText size={18} />
@@ -350,14 +351,16 @@ export function InvestorPage() {
             <h2 className="mythos-headline-medium text-white">Start a conversation.</h2>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <button
-                onClick={() => { track('investors-view-deck', { placement: 'contact' }); setDeckOpen(true); }}
+                onClick={() => setDeckOpen(true)}
+                data-mythos-track="investors-view-deck-contact"
                 className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0047FF] px-8 py-4 font-semibold text-white transition-all hover:gap-4"
               >
                 <Play size={18} fill="currentColor" />
                 View the Deck
               </button>
               <button
-                onClick={() => { track('investors-request-copy', { placement: 'contact' }); setRequestOpen(true); }}
+                onClick={() => setRequestOpen(true)}
+                data-mythos-track="investors-request-copy-contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition-colors hover:bg-white/10"
               >
                 Request the deck & intro <ArrowRight size={18} />

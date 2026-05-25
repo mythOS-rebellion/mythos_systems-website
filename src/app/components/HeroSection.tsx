@@ -5,18 +5,16 @@ import mythosLogoBackground from 'figma:asset/603c0e6525b97496065a3d319d8d238106
 import { EarlyAccessModal } from './EarlyAccessModal';
 import CityPulseBackground from './CityPulseBackground';
 import { HoverBorderGradient } from './ui/hover-border-gradient';
-import { track } from '../../lib/track';
 
 export function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleJoinRebellionClick = () => {
-    track('hero-join-the-rebellion');
-    setIsModalOpen(true);
-  };
-
+  // Analytics on these two CTAs is delegated to the document-level
+  // click listener in getinfo.js — it walks `closest('[data-mythos-track]')`,
+  // so wrapping the HoverBorderGradient in a <span> with the attr fires
+  // the right event_type=click without us having to plumb a tracker call
+  // through the (third-party) HBG component's props.
   const handleInvestorClick = () => {
-    track('hero-become-a-partner');
     (window as any).navigateTo?.('partner');
   };
 
@@ -66,29 +64,33 @@ export function HeroSection() {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <div className="flex flex-col items-center gap-2">
-              <HoverBorderGradient
-                as="button"
-                onClick={handleJoinRebellionClick}
-                containerClassName="rounded-full"
-                className="bg-[#0047FF] text-white px-8 py-4 flex items-center gap-3"
-                duration={1}
-              >
-                <span className="font-semibold">Join The Rebellion</span>
-              </HoverBorderGradient>
+              <span data-mythos-track="hero-join-the-rebellion">
+                <HoverBorderGradient
+                  as="button"
+                  onClick={() => setIsModalOpen(true)}
+                  containerClassName="rounded-full"
+                  className="bg-[#0047FF] text-white px-8 py-4 flex items-center gap-3"
+                  duration={1}
+                >
+                  <span className="font-semibold">Join The Rebellion</span>
+                </HoverBorderGradient>
+              </span>
               <p className="text-sm text-[#B0B0B0]">Get Invited to Early Access List</p>
             </div>
-            
+
             <div className="flex flex-col items-center gap-2">
-              <HoverBorderGradient
-                as="button"
-                onClick={handleInvestorClick}
-                containerClassName="rounded-full"
-                className="bg-transparent text-white px-8 py-4 flex items-center gap-3"
-                duration={1}
-              >
-                <ArrowRight size={20} />
-                <span className="font-semibold">Become a Partner</span>
-              </HoverBorderGradient>
+              <span data-mythos-track="hero-become-a-partner">
+                <HoverBorderGradient
+                  as="button"
+                  onClick={handleInvestorClick}
+                  containerClassName="rounded-full"
+                  className="bg-transparent text-white px-8 py-4 flex items-center gap-3"
+                  duration={1}
+                >
+                  <ArrowRight size={20} />
+                  <span className="font-semibold">Become a Partner</span>
+                </HoverBorderGradient>
+              </span>
               <p className="text-sm text-[#B0B0B0]">Help us rebuild local economies</p>
             </div>
           </div>
