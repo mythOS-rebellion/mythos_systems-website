@@ -1,5 +1,5 @@
 import { Navigation } from '../components/Navigation';
-import { HeroSection } from '../components/HeroSection';
+import { MythosHero } from '../components/ui/mythos-hero';
 import { SanDiegoSection } from '../components/SanDiegoSection';
 import { HowItWorks } from '../components/HowItWorks';
 import { PricingSection } from '../components/PricingSection';
@@ -11,7 +11,7 @@ export function HomePage() {
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
       <Navigation />
-      <HeroSection />
+      <MythosHero />
       <SanDiegoSection />
       <StatsSection />
       <HowItWorks />
