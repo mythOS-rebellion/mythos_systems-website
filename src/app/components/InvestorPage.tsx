@@ -18,6 +18,7 @@ import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { InvestorDeckModal } from './InvestorDeckModal';
 import { DeckViewerModal } from './DeckViewerModal';
+import { GlassesDemoModal } from './GlassesDemoModal';
 
 function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   return (
@@ -47,6 +48,7 @@ function Eyebrow({ children, color = '#0047FF' }: { children: ReactNode; color?:
 export function InvestorPage() {
   const [deckOpen, setDeckOpen] = useState(false);
   const [requestOpen, setRequestOpen] = useState(false);
+  const [glassesOpen, setGlassesOpen] = useState(false);
 
   const pillars = [
     { label: 'The market', desc: '$7–10B in smart mirrors, $120B+ in smart glasses, multi-trillion globally. We sit on top of all of it.', color: '#0047FF' },
@@ -64,13 +66,6 @@ export function InvestorPage() {
   ];
 
   const builds = [
-    {
-      icon: <Glasses size={22} />,
-      name: 'Mylo Glasses',
-      tag: 'Wearable',
-      desc: 'Hands-free AI for the operator — Mylo in your ear and in your line of sight.',
-      color: '#9D4EDD',
-    },
     {
       icon: <Wallet size={22} />,
       name: 'MythOS Wallet',
@@ -218,10 +213,90 @@ export function InvestorPage() {
             </div>
           </Reveal>
 
-          {/* Two more builds */}
+          {/* ===== Mylo Glasses — dedicated build under the mirror ===== */}
+          <div className="mt-20 border-t border-white/10 pt-16">
+            <Reveal>
+              <Eyebrow color="#FF4500">On the face</Eyebrow>
+              <div className="flex flex-wrap items-center gap-3">
+                <h2 className="mythos-headline-large text-white">Mylo Glasses.</h2>
+                <span className="rounded-full border border-[#FF4500]/40 bg-[#FF4500]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#FF4500]">
+                  Prototype · roadmap
+                </span>
+              </div>
+              <p className="mt-5 max-w-2xl text-lg text-[#B0B0B0]">
+                The mirror is the operating system of the chair. Mylo Glasses are the operating system of the human —
+                one premium device with a full in-lens display, putting Mylo on the face of every operator and,
+                eventually, everyone on The Network.
+              </p>
+              <button
+                onClick={() => setGlassesOpen(true)}
+                className="group mt-7 inline-flex items-center gap-3 rounded-full bg-[#FF4500] px-8 py-4 font-semibold text-white transition-all hover:gap-4 hover:shadow-xl hover:shadow-[#FF4500]/40"
+              >
+                <Play size={20} fill="currentColor" />
+                Explore the build
+              </button>
+            </Reveal>
+
+            <div className="mt-12 grid gap-4 md:grid-cols-2">
+              <Reveal>
+                <div className="h-full rounded-2xl border border-white/10 bg-[#111] p-7">
+                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg" style={{ background: "#FF45001A", color: "#FF4500" }}>
+                    <Glasses size={22} />
+                  </div>
+                  <h3 className="mb-2 text-lg font-bold text-white">For operators</h3>
+                  <p className="text-sm leading-relaxed text-[#B0B0B0]">
+                    Walk in and Mylo briefs you on every client before they sit — last visit's notes, their cut, their
+                    preferences. Ask a question and it answers on your glasses while the result renders on the client's
+                    mirror.
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <div className="h-full rounded-2xl border border-white/10 bg-[#111] p-7">
+                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg" style={{ background: "#0047FF1A", color: "#0047FF" }}>
+                    <Sparkles size={22} />
+                  </div>
+                  <h3 className="mb-2 text-lg font-bold text-white">For everyone else</h3>
+                  <p className="text-sm leading-relaxed text-[#B0B0B0]">
+                    Your city in your line of sight. At a farmers market Mylo points you to the vendor that matches what
+                    you're after; land somewhere new and it surfaces the spots that feel like home.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal delay={0.1}>
+              <div className="mt-4 rounded-2xl border border-[#FF4500]/30 bg-[#FF4500]/5 p-7">
+                <h3 className="text-lg font-bold text-white">Profile portability, not facial recognition.</h3>
+                <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#B0B0B0]">
+                  Facial recognition tells a business <span className="text-white">who</span> you are. MythOS tells them{" "}
+                  <span className="text-white">who you are, what you need, and how to serve you</span> — from a profile{" "}
+                  <span className="text-white">you</span> write and control. No biometrics, no surveillance, legally
+                  clean. Mylo filters it down to only what's relevant for that business, in that moment.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="mt-4 grid gap-4 sm:grid-cols-3">
+              {[
+                { num: '$120B+', label: 'US TAM ceiling — the largest in the MythOS lineup' },
+                { num: '$15–25B', label: 'core B2B across ~3M units — barbershops, salons, restaurants, retail' },
+                { num: '$899', label: 'one premium SKU · Apple-tier hardware margins at scale' },
+              ].map((s, i) => (
+                <Reveal key={s.label} delay={0.12 + i * 0.06}>
+                  <div className="h-full rounded-xl border border-white/10 bg-[#111] p-6">
+                    <div className="mythos-headline-medium text-white">{s.num}</div>
+                    <p className="mt-2 text-sm text-[#B0B0B0]">{s.label}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* One more build */}
           <Reveal>
             <p className="mt-16 mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-[#707070]">
-              And two more builds on the roadmap
+              And one more build on the roadmap
             </p>
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -387,6 +462,7 @@ export function InvestorPage() {
       <Footer />
 
       <DeckViewerModal isOpen={deckOpen} onClose={() => setDeckOpen(false)} />
+      <GlassesDemoModal isOpen={glassesOpen} onClose={() => setGlassesOpen(false)} />
       <InvestorDeckModal isOpen={requestOpen} onClose={() => setRequestOpen(false)} />
     </div>
   );
