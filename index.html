@@ -1,30 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MythOS — The Fight for Local</title>
+    <meta name="description" content="MythOS is the operating system for local economies — software, hardware, and payments that help local businesses fight back against Big Tech." />
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>MythOS Website Design</title>
-      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
-    </head>
+    <link rel="icon" type="image/png" href="/MythOS-favicon.png" />
+    <link rel="apple-touch-icon" href="/MythOS-favicon.png" />
 
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-      <!--
-        MythOS Pro analytics beacon. Tracks pageviews / clicks / form
-        submits / outbound links / scroll depth / custom events and
-        POSTs them to mythospro.ai/api/public/track, scoped by
-        data-site-id. Shows up in the dashboard under the MythOS
-        Website site row for the nateadams@mythosrebellion.com shop.
-        Same script minty + onthego use.
-      -->
-      <script
-        async
-        src="https://mythospro.ai/getinfo.js"
-        data-site-id="1b893314-57ad-4f0e-b2f8-508f113d7f4f"
-        data-host-url="https://mythospro.ai"
-      ></script>
-    </body>
-  </html>
-  
+    <!-- Open Graph / link previews (iMessage, Slack, Twitter, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MythOS" />
+    <meta property="og:title" content="MythOS — The Fight for Local" />
+    <meta property="og:description" content="The operating system for local economies. Helping local businesses fight back against Big Tech." />
+    <meta property="og:image" content="https://mythosrebellion.com/MythOS-favicon.png" />
+    <meta property="og:url" content="https://mythosrebellion.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MythOS — The Fight for Local" />
+    <meta name="twitter:description" content="The operating system for local economies. Helping local businesses fight back against Big Tech." />
+    <meta name="twitter:image" content="https://mythosrebellion.com/MythOS-favicon.png" />
+
+    <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!--
+      MythOS Pro analytics beacon. Tracks pageviews / clicks / form
+      submits / outbound links / scroll depth / custom events and
+      POSTs them to mythospro.ai/api/public/track, scoped by
+      data-site-id. Shows up in the dashboard under the MythOS
+      Website site row for the nateadams@mythosrebellion.com shop.
+      Same script minty + onthego use.
+    -->
+    <script
+      async
+      src="https://mythospro.ai/getinfo.js"
+      data-site-id="1b893314-57ad-4f0e-b2f8-508f113d7f4f"
+      data-host-url="https://mythospro.ai"
+    ></script>
+  </body>
+</html>
