@@ -53,8 +53,8 @@ export function InvestorPage() {
   const [mirrorOpen, setMirrorOpen] = useState(false);
 
   const pillars = [
-    { label: 'The market', desc: '$7–10B in smart mirrors, $120B+ in smart glasses, multi-trillion globally. We sit on top of all of it.', color: '#0047FF' },
-    { label: 'The moat', desc: 'Five reinforcing edges: SaaS depth, hardware lock-in, 0.7% payments, a consumer network, and one AI brain.', color: '#9D4EDD' },
+    { label: 'The market', desc: '$40B in local-business software, $7–10B in smart mirrors, and a slice of multi-trillion local commerce. We sit on top of all of it.', color: '#0047FF' },
+    { label: 'The moat', desc: 'Reinforcing edges — SaaS depth, hardware lock-in, 0.7% payments, one AI brain — and The Network capturing hyper-local behavioral data no one else can touch.', color: '#9D4EDD' },
     { label: 'The entry', desc: 'A $500K bridge today, ahead of a priced $3–5M round. Early — by design.', color: '#FF4500' },
   ];
 
@@ -338,7 +338,9 @@ export function InvestorPage() {
       <section className="border-b border-white/10 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            <Eyebrow color="#FF4500">Research project · in partnership with UT Dallas</Eyebrow>
+            <Eyebrow color="#FF4500">
+              <span className="text-white">Research project</span> · in partnership with UT Dallas
+            </Eyebrow>
             <h2 className="mythos-headline-large max-w-3xl text-white">
               How much is <span className="text-[#FF4500]">Big Tech</span> costing your business?
             </h2>
@@ -349,14 +351,27 @@ export function InvestorPage() {
           </Reveal>
 
           <div className="mt-12 grid gap-4 sm:grid-cols-3">
-            {[
+            {([
               { num: '$238B', label: 'Google ad revenue in 2023 alone' },
               { num: '72%', label: 'of SMBs say ad costs rose year over year' },
-              { num: '1,000s', label: 'of owner interviews feeding the report' },
-            ].map((s, i) => (
+              {
+                num: 'Matt Stoller',
+                label: 'Leading anti-trust expert · featured in the report',
+                eyebrow: 'EXCLUSIVE INTERVIEW',
+                small: true,
+              },
+            ] as { num: string; label: string; eyebrow?: string; small?: boolean }[]).map((s, i) => (
               <Reveal key={s.label} delay={i * 0.08}>
                 <div className="rounded-xl border border-white/10 bg-[#111] p-6">
-                  <div className="mythos-stat-number bg-gradient-to-b from-white to-[#8cb4d8] bg-clip-text text-transparent">
+                  {s.eyebrow && (
+                    <div className="mb-2 text-xs font-semibold tracking-[0.15em] text-[#FF4500]">
+                      {s.eyebrow}
+                    </div>
+                  )}
+                  <div
+                    className="mythos-stat-number bg-gradient-to-b from-white to-[#8cb4d8] bg-clip-text text-transparent"
+                    style={s.small ? { fontSize: 'clamp(1.75rem, 4vw, 2.75rem)' } : undefined}
+                  >
                     {s.num}
                   </div>
                   <p className="mt-2 text-sm text-[#B0B0B0]">{s.label}</p>
@@ -366,33 +381,9 @@ export function InvestorPage() {
           </div>
           <Reveal>
             <p className="mt-6 text-sm text-[#707070]">
-              The findings become the wedge: every dollar of "tax" we document is a dollar MythOS gives back.
+              The full report drops soon — watch for it in the press.
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ===== 5. TRACTION ===== */}
-      <section className="border-b border-white/10 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <Eyebrow>Traction</Eyebrow>
-          </Reveal>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { num: '2,732', label: 'unique humans already in the ecosystem' },
-              { num: '11,974', label: 'customers reachable through partners' },
-              { num: 'MVP', label: 'The Network MVP built — public launch ahead' },
-              { num: 'LOIs', label: 'signed commitments from local businesses' },
-            ].map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.07}>
-                <div className="h-full rounded-xl border border-white/10 bg-[#111] p-6">
-                  <div className="mythos-headline-medium text-white">{s.num}</div>
-                  <p className="mt-2 text-sm text-[#B0B0B0]">{s.label}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
