@@ -2,17 +2,10 @@ import { motion } from "motion/react";
 import networkImage from "figma:asset/74985c6751d2bbfae4e6dc04a8c7db4f79626033.png";
 import { Tilt } from "./ui/tilt";
 import { Spotlight } from "./ui/spotlight";
-import AnimatedShaderBackground from "./ui/animated-shader-background";
 
 export function SanDiegoSection() {
   return (
     <section className="py-24 bg-[#000000] relative overflow-hidden">
-      {/* Animated Shader Background */}
-      <AnimatedShaderBackground />
-      
-      {/* Dark overlay to reduce intensity and improve text readability */}
-      <div className="absolute inset-0 bg-[#000000]/60 z-[1]" />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-[3]">
         {/* Header */}
         <motion.div
