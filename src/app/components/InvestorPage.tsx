@@ -119,7 +119,7 @@ export function InvestorPage() {
             <div className="relative overflow-hidden rounded-2xl border border-[#0047FF]/30 bg-gradient-to-br from-[#0047FF]/10 via-[#0A0A0A] to-[#9D4EDD]/10 p-8 sm:p-12">
               <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
                 <div className="max-w-xl">
-                  <Eyebrow>The thesis · 21 slides</Eyebrow>
+                  <Eyebrow>The thesis · 29 slides</Eyebrow>
                   <h2 className="mythos-headline-medium text-white">The whole story, in five minutes.</h2>
                   <p className="mt-4 text-[#B0B0B0]">
                     The problem, the operating system, the hardware, the traction, and the ask — read it right here.
@@ -147,6 +147,26 @@ export function InvestorPage() {
             </div>
           </Reveal>
         </div>
+      </section>
+
+      {/* ===== software products CTA (above the hardware) ===== */}
+      <section className="border-b border-white/10 px-4 py-12 sm:px-6 lg:px-8">
+        <Reveal>
+          <div className="mx-auto flex max-w-6xl flex-col items-start gap-5 rounded-2xl border border-white/10 bg-gradient-to-br from-[#0047FF]/10 via-[#0A0A0A] to-[#0A0A0A] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div>
+              <Eyebrow>The software</Eyebrow>
+              <h3 className="text-2xl font-semibold text-white">Check out our software products.</h3>
+              <p className="mt-2 text-[#B0B0B0]">MythOS Pro, The Network, and Mylo — the live products behind the hardware.</p>
+            </div>
+            <button
+              onClick={() => (window as { navigateTo?: (p: string) => void }).navigateTo?.('products')}
+              className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[#F5F5F0] px-7 py-3.5 font-semibold text-black transition-transform hover:scale-[1.02]"
+            >
+              See the products
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
+        </Reveal>
       </section>
 
       {/* ===== 3. THE MIRROR / HARDWARE ===== */}
