@@ -131,7 +131,7 @@ export function ProductAccessModal({ isOpen, onClose, type }: ProductAccessModal
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/20 rounded text-white placeholder-[#707070] focus:outline-none focus:border-[#0047FF] transition-colors"
+                  className="w-full px-4 py-3 bg-[#000000] border border-white/20 rounded text-white placeholder-[#707070] focus:outline-none focus:border-[#0047FF] transition-colors"
                   placeholder="your@email.com"
                 />
               </div>
@@ -146,7 +146,7 @@ export function ProductAccessModal({ isOpen, onClose, type }: ProductAccessModal
                     id="businessName"
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/20 rounded text-white placeholder-[#707070] focus:outline-none focus:border-[#0047FF] transition-colors"
+                    className="w-full px-4 py-3 bg-[#000000] border border-white/20 rounded text-white placeholder-[#707070] focus:outline-none focus:border-[#0047FF] transition-colors"
                     placeholder="Your business name"
                   />
                 </div>
@@ -162,7 +162,7 @@ export function ProductAccessModal({ isOpen, onClose, type }: ProductAccessModal
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   required
-                  className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/20 rounded text-white placeholder-[#707070] focus:outline-none focus:border-[#0047FF] transition-colors"
+                  className="w-full px-4 py-3 bg-[#000000] border border-white/20 rounded text-white placeholder-[#707070] focus:outline-none focus:border-[#0047FF] transition-colors"
                   placeholder="San Diego"
                 />
               </div>

@@ -29,7 +29,7 @@ export function ProductCards() {
   ];
 
   return (
-    <section id="features" className="py-24 bg-[#0A0A0A] relative">
+    <section id="features" className="py-24 bg-[#000000] relative">
       {/* Section divider */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#9D4EDD] to-transparent"></div>
       

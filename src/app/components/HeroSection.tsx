@@ -20,7 +20,7 @@ export function HeroSection() {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#000000] pt-20">
         {/* MythOS Logo Background - Behind Grid */}
         {/* Mobile */}
         <div 

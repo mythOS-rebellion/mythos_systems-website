@@ -63,7 +63,7 @@ export function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalProps) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
       onClick={handleOverlayClick}
     >
-      <div className="relative bg-[#0A0A0A] border-2 border-white/20 rounded-lg max-w-md w-full mx-4 shadow-2xl">
+      <div className="relative bg-[#000000] border-2 border-white/20 rounded-lg max-w-md w-full mx-4 shadow-2xl">
         {/* Close button */}
         <button
           onClick={onClose}

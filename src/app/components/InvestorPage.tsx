@@ -78,7 +78,7 @@ export function InvestorPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-[#000000]">
       <Navigation />
 
       {/* ===== 1. HOOK ===== */}
@@ -116,7 +116,7 @@ export function InvestorPage() {
       <section className="border-b border-white/10 px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            <div className="relative overflow-hidden rounded-2xl border border-[#0047FF]/30 bg-gradient-to-br from-[#0047FF]/10 via-[#0A0A0A] to-[#9D4EDD]/10 p-8 sm:p-12">
+            <div className="relative overflow-hidden rounded-2xl border border-[#0047FF]/30 bg-gradient-to-br from-[#0047FF]/10 via-[#000000] to-[#9D4EDD]/10 p-8 sm:p-12">
               <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
                 <div className="max-w-xl">
                   <Eyebrow>The thesis · 29 slides</Eyebrow>
@@ -152,7 +152,7 @@ export function InvestorPage() {
       {/* ===== software products CTA (above the hardware) ===== */}
       <section className="border-b border-white/10 px-4 py-12 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="mx-auto flex max-w-6xl flex-col items-start gap-5 rounded-2xl border border-white/10 bg-gradient-to-br from-[#0047FF]/10 via-[#0A0A0A] to-[#0A0A0A] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="mx-auto flex max-w-6xl flex-col items-start gap-5 rounded-2xl border border-white/10 bg-gradient-to-br from-[#0047FF]/10 via-[#000000] to-[#000000] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
             <div>
               <Eyebrow>The software</Eyebrow>
               <h3 className="text-2xl font-semibold text-white">Check out our software products.</h3>

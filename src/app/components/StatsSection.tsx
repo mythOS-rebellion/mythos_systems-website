@@ -6,27 +6,24 @@ export function StatsSection() {
       number: '1 in 6',
       description: 'people worldwide experience loneliness',
       source: 'WHO, 2023',
-      gradient: 'from-[#0A0A0A] to-[#1A1A1A]',
+      gradient: 'from-[#000000] to-[#1A1A1A]',
     },
     {
       number: '60%',
       description: 'of San Diego jobs are at small businesses - yet they pay 38% less than big companies',
       source: 'San Diego Regional EDC, 2024',
-      gradient: 'from-[#1A1A1A] to-[#0A0A0A]',
+      gradient: 'from-[#1A1A1A] to-[#000000]',
     },
     {
       number: '66%',
       description: 'of small businesses spend under $1,000/year on marketing while competing against billion-dollar ad budgets',
       source: 'SBA & Industry Research, 2024',
-      gradient: 'from-[#0A0A0A] to-[#1A1A1A]',
+      gradient: 'from-[#000000] to-[#1A1A1A]',
     },
   ];
 
   return (
-    <section className="py-24 bg-[#0A0A0A] relative">
-      {/* Section divider */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FF4500] to-transparent"></div>
-      
+    <section className="py-24 bg-[#000000] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="mythos-headline-large text-white text-center mb-16">
           The Crisis Is Real

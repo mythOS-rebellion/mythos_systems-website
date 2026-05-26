@@ -29,12 +29,12 @@ export function PartnerPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white">
+    <div className="min-h-screen bg-[#000000] text-white">
       <Navigation />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <TubesBackground className="min-h-[600px] bg-[#0A0A0A]" enableClickInteraction={!isMobile}>
+        <TubesBackground className="min-h-[600px] bg-[#000000]" enableClickInteraction={!isMobile}>
           <div className="flex flex-col items-center justify-center w-full h-full min-h-[600px] pt-32 pb-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <h1 

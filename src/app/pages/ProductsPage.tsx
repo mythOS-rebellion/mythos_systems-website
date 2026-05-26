@@ -10,7 +10,7 @@ import networkMap from 'figma:asset/275259ca2405960447664508beeb1bd72c317899.png
 
 export function ProductsPage() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-[#000000]">
       <Navigation />
       
       {/* Hero Section */}
@@ -34,7 +34,7 @@ export function ProductsPage() {
       <div className="h-1 bg-gradient-to-r from-transparent via-[#0047FF] to-transparent"></div>
 
       {/* The Network Section */}
-      <section className="py-16 bg-[#0A0A0A]">
+      <section className="py-16 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0047FF]/20 border border-[#0047FF]/30 rounded-full mb-6">
@@ -68,7 +68,7 @@ export function ProductsPage() {
           
           {/* Network App Screenshots - Side by Side */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <div className="rounded-2xl border border-[#0047FF]/30 overflow-hidden bg-[#0A0A0A]">
+            <div className="rounded-2xl border border-[#0047FF]/30 overflow-hidden bg-[#000000]">
               <img 
                 src={networkCommunities} 
                 alt="The Network Communities" 
@@ -76,7 +76,7 @@ export function ProductsPage() {
               />
             </div>
             
-            <div className="rounded-2xl border border-[#0047FF]/30 overflow-hidden bg-[#0A0A0A]">
+            <div className="rounded-2xl border border-[#0047FF]/30 overflow-hidden bg-[#000000]">
               <img 
                 src={networkPulse} 
                 alt="The Network Local Pulse" 
@@ -84,7 +84,7 @@ export function ProductsPage() {
               />
             </div>
             
-            <div className="rounded-2xl border border-[#0047FF]/30 overflow-hidden bg-[#0A0A0A]">
+            <div className="rounded-2xl border border-[#0047FF]/30 overflow-hidden bg-[#000000]">
               <img 
                 src={networkMap} 
                 alt="The Network Map" 
@@ -102,7 +102,7 @@ export function ProductsPage() {
             {/* Images */}
             <div className="relative order-2 lg:order-1 space-y-6">
               {/* Dashboard Image */}
-              <div className="rounded-2xl border border-[#0047FF]/30 overflow-hidden bg-[#0A0A0A]">
+              <div className="rounded-2xl border border-[#0047FF]/30 overflow-hidden bg-[#000000]">
                 <img 
                   src={mythosProDashboard} 
                   alt="MythOS Pro Business Dashboard" 
@@ -111,7 +111,7 @@ export function ProductsPage() {
               </div>
               
               {/* Analytics Image */}
-              <div className="rounded-2xl border border-[#0047FF]/30 overflow-hidden bg-[#0A0A0A]">
+              <div className="rounded-2xl border border-[#0047FF]/30 overflow-hidden bg-[#000000]">
                 <img 
                   src={mythosProAnalytics} 
                   alt="MythOS Pro Analytics" 
@@ -155,7 +155,7 @@ export function ProductsPage() {
       </section>
 
       {/* Mylo AI Section */}
-      <section className="py-20 bg-[#0A0A0A]">
+      <section className="py-20 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF4500]/20 border border-[#FF4500]/30 rounded-full mb-6">
@@ -174,7 +174,7 @@ export function ProductsPage() {
           
           {/* Mylo Phone Image */}
           <div className="flex justify-center mb-16">
-            <div className="max-w-sm rounded-2xl border border-[#FF4500]/30 overflow-hidden bg-[#0A0A0A]">
+            <div className="max-w-sm rounded-2xl border border-[#FF4500]/30 overflow-hidden bg-[#000000]">
               <img 
                 src={myloPhone} 
                 alt="Mylo AI Assistant Interface" 

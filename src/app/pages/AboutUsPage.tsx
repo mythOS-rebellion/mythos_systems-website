@@ -6,7 +6,7 @@ export function AboutUsPage() {
   const sanDiegoImage = 'https://images.unsplash.com/photo-1669624064892-1a4e662eb829?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxTYW4lMjBEaWVnbyUyMGRvd250b3duJTIwYnVzaW5lc3N8ZW58MXx8fHwxNzcwMzk5ODQ5fDA&ixlib=rb-4.1.0&q=80&w=1080';
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-[#000000]">
       <Navigation />
       
       {/* Hero Section */}
@@ -27,7 +27,7 @@ export function AboutUsPage() {
       </section>
 
       {/* Why We Started Section */}
-      <section className="py-20 bg-[#0A0A0A]">
+      <section className="py-20 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="inline-block px-4 py-2 bg-[#FF4500]/20 border border-[#FF4500]/30 rounded-full text-[#FF4500] font-bold mb-6">
@@ -72,7 +72,7 @@ export function AboutUsPage() {
       </section>
 
       {/* Why It Matters Section */}
-      <section className="py-20 bg-[#0A0A0A]">
+      <section className="py-20 bg-[#000000]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="inline-block px-4 py-2 bg-[#9D4EDD]/20 border border-[#9D4EDD]/30 rounded-full text-[#9D4EDD] font-bold mb-6">
@@ -112,7 +112,7 @@ export function AboutUsPage() {
       </section>
 
       {/* Built by Rebels Section */}
-      <section className="py-20 bg-[#0A0A0A]">
+      <section className="py-20 bg-[#000000]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-12" style={{ fontFamily: 'var(--font-headline)' }}>
             Built By Rebels

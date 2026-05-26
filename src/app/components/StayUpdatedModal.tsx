@@ -25,7 +25,7 @@ export function StayUpdatedModal({ isOpen, onClose }: StayUpdatedModalProps) {
       />
       
       {/* Modal */}
-      <div className="relative bg-[#0A0A0A] border border-white/20 rounded-xl p-8 max-w-md w-full shadow-2xl animate-in zoom-in-95 duration-200">
+      <div className="relative bg-[#000000] border border-white/20 rounded-xl p-8 max-w-md w-full shadow-2xl animate-in zoom-in-95 duration-200">
         {/* Close button */}
         <button
           onClick={onClose}

@@ -47,7 +47,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0A0A0A] border-t border-white/10 pt-16 pb-8">
+    <footer className="bg-[#000000] border-t border-white/10 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top section */}
         <div className="mb-12 text-center md:text-left">

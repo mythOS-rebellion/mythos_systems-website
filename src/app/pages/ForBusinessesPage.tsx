@@ -100,7 +100,7 @@ export function ForBusinessesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-[#000000]">
       <Navigation />
       
       {/* Hero Section with Container Scroll */}
@@ -153,7 +153,7 @@ export function ForBusinessesPage() {
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="bg-[#0A0A0A] border border-white/10 rounded-lg p-8 hover:border-[#FF4500]/50 transition-all duration-300"
+                className="bg-[#000000] border border-white/10 rounded-lg p-8 hover:border-[#FF4500]/50 transition-all duration-300"
               >
                 <div 
                   className="mb-6 inline-flex p-3 rounded-lg"
@@ -174,7 +174,7 @@ export function ForBusinessesPage() {
       </section>
 
       {/* Features Breakdown */}
-      <section className="py-20 bg-[#0A0A0A]">
+      <section className="py-20 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-16" style={{ fontFamily: 'var(--font-headline)' }}>
             Everything You Need to Run Your Business

@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import networkImage from "figma:asset/74985c6751d2bbfae4e6dc04a8c7db4f79626033.png";
 import { Tilt } from "./ui/tilt";
 import { Spotlight } from "./ui/spotlight";
@@ -5,29 +6,38 @@ import AnimatedShaderBackground from "./ui/animated-shader-background";
 
 export function SanDiegoSection() {
   return (
-    <section className="py-24 bg-[#0A0A0A] relative overflow-hidden">
+    <section className="py-24 bg-[#000000] relative overflow-hidden">
       {/* Animated Shader Background */}
       <AnimatedShaderBackground />
       
       {/* Dark overlay to reduce intensity and improve text readability */}
-      <div className="absolute inset-0 bg-[#0A0A0A]/60 z-[1]" />
-      
-      {/* Section divider */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#0047FF] to-transparent z-[2]"></div>
+      <div className="absolute inset-0 bg-[#000000]/60 z-[1]" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-[3]">
         {/* Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           <h2 className="mythos-headline-large text-white mb-6">
             Built for Your City
           </h2>
           <p className="mythos-body-large text-[#B0B0B0] max-w-3xl mx-auto">
             MythOS connects local businesses, people, and systems into shared digital infrastructure.
           </p>
-        </div>
+        </motion.div>
 
         {/* Network Illustration Image with Tilt Effect */}
-        <div className="relative w-full max-w-6xl mx-auto">
+        <motion.div
+          className="relative w-full max-w-6xl mx-auto"
+          initial={{ opacity: 0, y: 50, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        >
           <Tilt
             rotationFactor={6}
             isRevese
@@ -56,7 +66,7 @@ export function SanDiegoSection() {
               className="w-full h-auto rounded-lg"
             />
           </Tilt>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

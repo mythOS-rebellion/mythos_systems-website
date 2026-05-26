@@ -23,7 +23,7 @@ export function SanDiegoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white">
+    <div className="min-h-screen bg-[#000000] text-white">
       <Navigation />
 
       {/* Hero Section */}

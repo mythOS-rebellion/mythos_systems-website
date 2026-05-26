@@ -131,7 +131,7 @@ export function InvestorDeckModal({ isOpen, onClose }: InvestorDeckModalProps) {
                     required
                     value={formData.full_name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded text-white placeholder-[#B0B0B0] focus:border-[#0047FF] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-[#000000] border border-white/10 rounded text-white placeholder-[#B0B0B0] focus:border-[#0047FF] focus:outline-none transition-colors"
                     placeholder="John Doe"
                   />
                 </div>
@@ -148,7 +148,7 @@ export function InvestorDeckModal({ isOpen, onClose }: InvestorDeckModalProps) {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded text-white placeholder-[#B0B0B0] focus:border-[#0047FF] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-[#000000] border border-white/10 rounded text-white placeholder-[#B0B0B0] focus:border-[#0047FF] focus:outline-none transition-colors"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -164,7 +164,7 @@ export function InvestorDeckModal({ isOpen, onClose }: InvestorDeckModalProps) {
                     name="organization"
                     value={formData.organization}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded text-white placeholder-[#B0B0B0] focus:border-[#0047FF] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-[#000000] border border-white/10 rounded text-white placeholder-[#B0B0B0] focus:border-[#0047FF] focus:outline-none transition-colors"
                     placeholder="Acme Ventures"
                   />
                 </div>
@@ -179,7 +179,7 @@ export function InvestorDeckModal({ isOpen, onClose }: InvestorDeckModalProps) {
                     name="investor_type"
                     value={formData.investor_type}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded text-white focus:border-[#0047FF] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-[#000000] border border-white/10 rounded text-white focus:border-[#0047FF] focus:outline-none transition-colors"
                   >
                     <option value="">Select type</option>
                     <option value="angel">Angel Investor</option>
@@ -200,7 +200,7 @@ export function InvestorDeckModal({ isOpen, onClose }: InvestorDeckModalProps) {
                     name="check_size"
                     value={formData.check_size}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded text-white focus:border-[#0047FF] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-[#000000] border border-white/10 rounded text-white focus:border-[#0047FF] focus:outline-none transition-colors"
                   >
                     <option value="">Select range</option>
                     <option value="under_25k">Under $25K</option>
@@ -223,7 +223,7 @@ export function InvestorDeckModal({ isOpen, onClose }: InvestorDeckModalProps) {
                     rows={4}
                     value={formData.notes}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded text-white placeholder-[#B0B0B0] focus:border-[#0047FF] focus:outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-[#000000] border border-white/10 rounded text-white placeholder-[#B0B0B0] focus:border-[#0047FF] focus:outline-none transition-colors resize-none"
                     placeholder="Tell us about your investment thesis or any questions you have..."
                   />
                 </div>

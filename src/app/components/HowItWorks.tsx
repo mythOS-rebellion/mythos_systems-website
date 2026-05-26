@@ -26,7 +26,7 @@ export function HowItWorks() {
   ];
 
   return (
-    <section className="py-24 bg-[#0A0A0A] relative">
+    <section className="py-24 bg-[#000000] relative">
       {/* Section divider */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FF4500] to-transparent"></div>
       
@@ -47,7 +47,7 @@ export function HowItWorks() {
                 <div 
                   className="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto md:mx-0 border-4"
                   style={{ 
-                    backgroundColor: '#0A0A0A',
+                    backgroundColor: '#000000',
                     borderColor: step.color,
                     boxShadow: `0 0 20px ${step.color}50`
                   }}

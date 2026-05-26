@@ -101,7 +101,7 @@ export function BIDChamberModal({ isOpen, onClose }: BIDChamberModalProps) {
         onClick={handleClose}
       />
       
-      <div className="relative bg-[#0A0A0A] border border-white/20 rounded-xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in-95 duration-200">
+      <div className="relative bg-[#000000] border border-white/20 rounded-xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in-95 duration-200">
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 text-[#B0B0B0] hover:text-white transition-colors"

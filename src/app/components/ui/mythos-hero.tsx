@@ -102,7 +102,7 @@ const MythosHero = () => {
   return (
     <>
       <section className="h-screen w-full">
-        <div className="relative h-full w-full overflow-hidden rounded-2xl bg-[#0A0A0A] md:rounded-[2rem]">
+        <div className="relative h-full w-full overflow-hidden rounded-2xl bg-[#000000] md:rounded-[2rem]">
 
           {/* Background video */}
           <video
