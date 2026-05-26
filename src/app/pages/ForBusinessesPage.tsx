@@ -60,7 +60,7 @@ export function ForBusinessesPage() {
         { text: 'Customer inquiry responses', status: 'built' },
         { text: 'Real-time conversation monitoring', status: 'built' },
         { text: 'Manual takeover capability', status: 'built' },
-        { text: 'Voice call handling', status: 'coming' },
+        { text: 'Voice call handling', status: 'built' },
       ],
     },
     {
@@ -82,8 +82,8 @@ export function ForBusinessesPage() {
         { text: 'Quick expense estimation', status: 'built' },
         { text: 'Google integration (My Business, Gmail)', status: 'built' },
         { text: 'Meta integration (Instagram)', status: 'built' },
-        { text: 'Low inventory alerts', status: 'coming' },
-        { text: 'Marketing automation', status: 'coming' },
+        { text: 'Low inventory alerts', status: 'built' },
+        { text: 'Marketing automation', status: 'built' },
       ],
     },
     {
@@ -92,9 +92,9 @@ export function ForBusinessesPage() {
         { text: 'AI-generated business recommendations', status: 'built' },
         { text: 'Priority alerts & notifications', status: 'built' },
         { text: 'Action item tracking', status: 'built' },
-        { text: 'Complete CRM system', status: 'coming' },
-        { text: 'Unified inbox (Email, SMS, Instagram)', status: 'coming' },
-        { text: 'Smart customer segmentation', status: 'coming' },
+        { text: 'Complete CRM system', status: 'built' },
+        { text: 'Unified inbox (Email, SMS, Instagram)', status: 'built' },
+        { text: 'Smart customer segmentation', status: 'built' },
       ],
     },
   ];
