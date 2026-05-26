@@ -19,6 +19,7 @@ import { Footer } from './Footer';
 import { InvestorDeckModal } from './InvestorDeckModal';
 import { DeckViewerModal } from './DeckViewerModal';
 import { GlassesDemoModal } from './GlassesDemoModal';
+import { MirrorDemoModal } from './MirrorDemoModal';
 
 function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   return (
@@ -49,6 +50,7 @@ export function InvestorPage() {
   const [deckOpen, setDeckOpen] = useState(false);
   const [requestOpen, setRequestOpen] = useState(false);
   const [glassesOpen, setGlassesOpen] = useState(false);
+  const [mirrorOpen, setMirrorOpen] = useState(false);
 
   const pillars = [
     { label: 'The market', desc: '$7–10B in smart mirrors, $120B+ in smart glasses, multi-trillion globally. We sit on top of all of it.', color: '#0047FF' },
@@ -157,6 +159,13 @@ export function InvestorPage() {
               Software gets copied. Hardware gets installed. The MythOS Mirror turns every barber and salon chair into
               an AI experience — and a moat.
             </p>
+            <button
+              onClick={() => setMirrorOpen(true)}
+              className="group mt-7 inline-flex items-center gap-3 rounded-full bg-[#0047FF] px-8 py-4 font-semibold text-white transition-all hover:gap-4 hover:shadow-xl hover:shadow-[#0047FF]/40"
+            >
+              <Play size={20} fill="currentColor" />
+              Explore the build
+            </button>
           </Reveal>
 
           <div className="mt-12 grid items-center gap-10 lg:grid-cols-2">
@@ -463,6 +472,7 @@ export function InvestorPage() {
 
       <DeckViewerModal isOpen={deckOpen} onClose={() => setDeckOpen(false)} />
       <GlassesDemoModal isOpen={glassesOpen} onClose={() => setGlassesOpen(false)} />
+      <MirrorDemoModal isOpen={mirrorOpen} onClose={() => setMirrorOpen(false)} />
       <InvestorDeckModal isOpen={requestOpen} onClose={() => setRequestOpen(false)} />
     </div>
   );

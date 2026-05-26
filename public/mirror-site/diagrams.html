@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MythOS Smart Mirror — Technical Diagrams</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #08090c; font-family: 'Inter', sans-serif; color: #c8ccd4; }
+  .page {
+    width: 1100px; max-width: 100%; box-sizing: border-box; min-height: 840px; margin: 40px auto;
+    padding: 48px 56px 56px;
+    background: linear-gradient(175deg, #0d0e12 0%, #0a0b0f 50%, #0c0d11 100%);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(26,140,110,0.3), transparent);
+  }
+  .page-header { margin-bottom: 36px; }
+  .page-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+    color: rgba(26,140,110,0.5); margin-bottom: 8px; font-weight: 500;
+  }
+  .page-title {
+    font-size: 28px; font-weight: 600; color: #eef0f4;
+    letter-spacing: -0.5px; margin-bottom: 6px;
+  }
+  .page-sub {
+    font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 0.5px; font-weight: 300;
+  }
+  .svg-wrap { display: flex; justify-content: center; }
+  .svg-wrap svg { max-width: 100%; height: auto; }
+  .footer-mark {
+    position: absolute; bottom: 20px; right: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.08);
+  }
+  @media print {
+    .page { page-break-after: always; margin: 0; border-radius: 0; border: none; }
+    body { background: #0a0b0f; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PAGE 1: FRONT VIEW                                           -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-label">MythOS Smart Mirror &mdash; Diagram 1 of 6</div>
+    <div class="page-title">Front View</div>
+    <div class="page-sub">As Seen by Client in the Barber Chair</div>
+  </div>
+  <div class="svg-wrap">
+  <svg width="980" height="710" viewBox="0 0 980 710" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="mirror-glass" x1="0" y1="0" x2="0.3" y2="1">
+        <stop offset="0%" stop-color="#8ca0b4" stop-opacity="0.45"/>
+        <stop offset="35%" stop-color="#6a7a8a" stop-opacity="0.25"/>
+        <stop offset="70%" stop-color="#7a8ea0" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#92a8bc" stop-opacity="0.30"/>
+      </linearGradient>
+      <linearGradient id="led-t" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffd76e" stop-opacity="0.85"/><stop offset="100%" stop-color="#ffd76e" stop-opacity="0"/></linearGradient>
+      <linearGradient id="led-b" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ffd76e" stop-opacity="0.85"/><stop offset="100%" stop-color="#ffd76e" stop-opacity="0"/></linearGradient>
+      <linearGradient id="led-l" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ffd76e" stop-opacity="0.85"/><stop offset="100%" stop-color="#ffd76e" stop-opacity="0"/></linearGradient>
+      <linearGradient id="led-r" x1="1" y1="0" x2="0" y2="0"><stop offset="0%" stop-color="#ffd76e" stop-opacity="0.85"/><stop offset="100%" stop-color="#ffd76e" stop-opacity="0"/></linearGradient>
+      <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="glow-sm"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <linearGradient id="display-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#08080e"/><stop offset="100%" stop-color="#040408"/></linearGradient>
+      <linearGradient id="topbar-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#141414"/><stop offset="100%" stop-color="#0c0c0c"/></linearGradient>
+    </defs>
+
+    <!-- ENCLOSURE / FRAME -->
+    <rect x="340" y="120" width="200" height="490" fill="#111113" stroke="#222226" stroke-width="1.5" rx="2"/>
+
+    <!-- GLASS -->
+    <rect x="350" y="130" width="180" height="470" fill="url(#mirror-glass)" stroke="#3a4a5a" stroke-width="0.8" rx="1"/>
+
+    <!-- LED GLOW BORDER -->
+    <rect x="350" y="130" width="180" height="24" fill="url(#led-t)" filter="url(#glow)"/>
+    <rect x="350" y="576" width="180" height="24" fill="url(#led-b)" filter="url(#glow)"/>
+    <rect x="350" y="130" width="24" height="470" fill="url(#led-l)" filter="url(#glow)"/>
+    <rect x="506" y="130" width="24" height="470" fill="url(#led-r)" filter="url(#glow)"/>
+
+    <!-- DISPLAY ZONE -->
+    <rect x="374" y="154" width="132" height="340" fill="url(#display-bg)" stroke="#14141e" stroke-width="0.5" rx="1"/>
+
+    <!-- MIRROR ZONE DIVIDER -->
+    <line x1="374" y1="494" x2="506" y2="494" stroke="rgba(100,140,180,0.15)" stroke-width="0.5" stroke-dasharray="6,4"/>
+
+    <!-- ══ TOP BAR ══ -->
+    <rect x="336" y="82" width="208" height="38" fill="url(#topbar-bg)" stroke="#1e1e22" stroke-width="1" rx="3"/>
+    <!-- Speaker grille -->
+    <rect x="396" y="91" width="88" height="20" fill="#060608" stroke="#1a1a1e" stroke-width="0.8" rx="2"/>
+    <line x1="400" y1="96" x2="480" y2="96" stroke="rgba(255,255,255,0.06)" stroke-width="1.2"/>
+    <line x1="400" y1="100.5" x2="480" y2="100.5" stroke="rgba(255,255,255,0.06)" stroke-width="1.2"/>
+    <line x1="400" y1="105" x2="480" y2="105" stroke="rgba(255,255,255,0.06)" stroke-width="1.2"/>
+
+    <!-- Brio lens (left) -->
+    <circle cx="362" cy="101" r="8" fill="#060608" stroke="rgba(90,180,130,0.35)" stroke-width="1.2"/>
+    <circle cx="362" cy="101" r="4.5" fill="#0a0a0e" stroke="rgba(70,150,110,0.25)" stroke-width="0.5"/>
+    <circle cx="362" cy="101" r="1.8" fill="rgba(70,150,110,0.4)"/>
+
+    <!-- Orbbec lens (right) -->
+    <circle cx="520" cy="101" r="10" fill="#060608" stroke="rgba(90,110,200,0.35)" stroke-width="1.2"/>
+    <circle cx="520" cy="101" r="6.5" fill="#0a0a0e" stroke="rgba(70,90,180,0.25)" stroke-width="0.5"/>
+    <rect x="514" y="98" width="12" height="6" fill="none" stroke="rgba(70,90,180,0.3)" stroke-width="0.5" rx="1"/>
+
+    <!-- ══ LABELS ══ -->
+    <!-- Top Bar -->
+    <line x1="440" y1="82" x2="440" y2="52" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+    <text x="440" y="44" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.7)" font-family="Inter" font-weight="600">TOP BAR HOUSING</text>
+    <text x="440" y="30" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.25)" font-family="JetBrains Mono" font-weight="400">Cameras + Directional Speaker</text>
+
+    <!-- Brio -->
+    <line x1="354" y1="94" x2="205" y2="56" stroke="rgba(90,180,130,0.25)" stroke-width="0.8"/>
+    <text x="200" y="50" text-anchor="end" font-size="10.5" fill="rgba(90,190,140,0.85)" font-family="Inter" font-weight="600">Logitech Brio 4K</text>
+    <text x="200" y="64" text-anchor="end" font-size="9" fill="rgba(90,180,130,0.4)" font-family="JetBrains Mono">Face Capture &bull; AI Preview</text>
+
+    <!-- Orbbec -->
+    <line x1="530" y1="94" x2="675" y2="56" stroke="rgba(90,110,200,0.25)" stroke-width="0.8"/>
+    <text x="680" y="50" text-anchor="start" font-size="10.5" fill="rgba(120,140,220,0.85)" font-family="Inter" font-weight="600">Orbbec Gemini 335L</text>
+    <text x="680" y="64" text-anchor="start" font-size="9" fill="rgba(90,110,200,0.4)" font-family="JetBrains Mono">Depth Camera &bull; Gesture Tracking</text>
+
+    <!-- Speaker -->
+    <line x1="484" y1="101" x2="675" y2="101" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="680" y="97" text-anchor="start" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">Audfly X2 Speaker</text>
+    <text x="680" y="111" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">Parametric &bull; Directional Audio</text>
+
+    <!-- LED Border -->
+    <line x1="530" y1="148" x2="675" y2="175" stroke="rgba(255,215,110,0.2)" stroke-width="0.8"/>
+    <text x="680" y="171" text-anchor="start" font-size="10.5" fill="rgba(255,215,110,0.8)" font-family="Inter" font-weight="600">COB LED Border</text>
+    <text x="680" y="185" text-anchor="start" font-size="9" fill="rgba(255,215,110,0.3)" font-family="JetBrains Mono">CRI90+ &bull; 4000K &bull; Sandblasted Glass</text>
+
+    <!-- Side panels -->
+    <line x1="350" y1="200" x2="200" y2="200" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="195" y="196" text-anchor="end" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">Side Panels</text>
+    <text x="195" y="210" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">Soft Stone &bull; Matte Black</text>
+
+    <!-- Display Zone -->
+    <line x1="506" y1="320" x2="675" y2="310" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="680" y="306" text-anchor="start" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">Display Zone</text>
+    <text x="680" y="320" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">Samsung QN90 55&quot; &bull; 1000+ nit</text>
+    <text x="680" y="334" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">Portrait Orientation</text>
+
+    <!-- Glass -->
+    <line x1="350" y1="380" x2="200" y2="380" stroke="rgba(100,160,200,0.15)" stroke-width="0.8"/>
+    <text x="195" y="376" text-anchor="end" font-size="10.5" fill="rgba(130,180,210,0.7)" font-family="Inter" font-weight="600">Smart Mirror Glass</text>
+    <text x="195" y="390" text-anchor="end" font-size="9" fill="rgba(100,160,200,0.3)" font-family="JetBrains Mono">70R/30T Tempered Dielectric</text>
+    <text x="195" y="404" text-anchor="end" font-size="9" fill="rgba(100,160,200,0.3)" font-family="JetBrains Mono">30&quot; &times; 65&quot;</text>
+
+    <!-- Mirror Only Zone -->
+    <line x1="506" y1="540" x2="675" y2="530" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="680" y="526" text-anchor="start" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">Mirror-Only Zone</text>
+    <text x="680" y="540" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">Pure Reflection &bull; No Display</text>
+
+    <!-- Zone divider label -->
+    <line x1="374" y1="494" x2="200" y2="510" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+    <text x="195" y="508" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.18)" font-family="JetBrains Mono">Display / Mirror Boundary</text>
+
+    <!-- DIMENSIONS -->
+    <line x1="340" y1="650" x2="540" y2="650" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="340" y1="644" x2="340" y2="656" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="540" y1="644" x2="540" y2="656" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="440" y="668" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.15)" font-family="JetBrains Mono">30&quot;</text>
+
+    <line x1="296" y1="120" x2="296" y2="610" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="290" y1="120" x2="302" y2="120" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="290" y1="610" x2="302" y2="610" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="282" y="368" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.15)" font-family="JetBrains Mono" transform="rotate(-90,282,368)">65&quot;</text>
+  </svg>
+  </div>
+  <div class="footer-mark">MythOS Systems, Inc.</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PAGE 2: INTERNAL LAYOUT                                      -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-label">MythOS Smart Mirror &mdash; Diagram 2 of 6</div>
+    <div class="page-title">Internal Layout</div>
+    <div class="page-sub">Front-Facing View &mdash; Glass Removed &mdash; All Components Visible</div>
+  </div>
+  <div class="svg-wrap">
+  <svg width="980" height="700" viewBox="0 0 980 700" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- EXTRUSION FRAME -->
+    <rect x="310" y="78" width="240" height="524" fill="none" stroke="#4a4a50" stroke-width="7" rx="3"/>
+    <circle cx="314" cy="82" r="4" fill="#3a3a3e" stroke="#555" stroke-width="0.8"/>
+    <circle cx="546" cy="82" r="4" fill="#3a3a3e" stroke="#555" stroke-width="0.8"/>
+    <circle cx="314" cy="598" r="4" fill="#3a3a3e" stroke="#555" stroke-width="0.8"/>
+    <circle cx="546" cy="598" r="4" fill="#3a3a3e" stroke="#555" stroke-width="0.8"/>
+
+    <!-- TOP MESH VENT -->
+    <rect x="317" y="78" width="226" height="16" fill="#080808" stroke="#222" stroke-width="0.5"/>
+    <line x1="317" y1="83" x2="543" y2="83" stroke="rgba(255,255,255,0.04)" stroke-width="0.8"/>
+    <line x1="317" y1="88" x2="543" y2="88" stroke="rgba(255,255,255,0.04)" stroke-width="0.8"/>
+
+    <!-- BOTTOM MESH VENT -->
+    <rect x="317" y="586" width="226" height="16" fill="#080808" stroke="#222" stroke-width="0.5"/>
+    <line x1="317" y1="591" x2="543" y2="591" stroke="rgba(255,255,255,0.04)" stroke-width="0.8"/>
+    <line x1="317" y1="596" x2="543" y2="596" stroke="rgba(255,255,255,0.04)" stroke-width="0.8"/>
+
+    <!-- COB LED STRIPS (perimeter) -->
+    <rect x="317" y="94" width="226" height="8" fill="rgba(255,215,110,0.1)" stroke="rgba(255,215,110,0.3)" stroke-width="0.6" rx="1"/>
+    <rect x="317" y="578" width="226" height="8" fill="rgba(255,215,110,0.1)" stroke="rgba(255,215,110,0.3)" stroke-width="0.6" rx="1"/>
+    <rect x="317" y="102" width="8" height="476" fill="rgba(255,215,110,0.1)" stroke="rgba(255,215,110,0.3)" stroke-width="0.6" rx="1"/>
+    <rect x="535" y="102" width="8" height="476" fill="rgba(255,215,110,0.1)" stroke="rgba(255,215,110,0.3)" stroke-width="0.6" rx="1"/>
+
+    <!-- TOP COMPONENTS -->
+    <!-- Noctua Fan x2 -->
+    <circle cx="410" cy="112" r="13" fill="#111" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+    <circle cx="410" cy="112" r="8" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+    <circle cx="450" cy="112" r="13" fill="#111" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+    <circle cx="450" cy="112" r="8" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+
+    <!-- Brio -->
+    <rect x="328" y="99" width="28" height="14" fill="#0e1a0e" stroke="rgba(90,180,130,0.4)" stroke-width="0.8" rx="2"/>
+    <circle cx="342" cy="106" r="4.5" fill="#080808" stroke="rgba(70,150,110,0.3)" stroke-width="0.5"/>
+    <circle cx="342" cy="106" r="1.8" fill="rgba(70,150,110,0.5)"/>
+
+    <!-- Orbbec -->
+    <rect x="496" y="97" width="38" height="16" fill="#0e0e1a" stroke="rgba(90,110,200,0.4)" stroke-width="0.8" rx="2"/>
+    <rect x="499" y="100" width="10" height="10" fill="#08081a" stroke="rgba(70,90,180,0.3)" stroke-width="0.4" rx="1"/>
+    <rect x="512" y="100" width="10" height="10" fill="#08081a" stroke="rgba(70,90,180,0.3)" stroke-width="0.4" rx="1"/>
+
+    <!-- Audfly footprint -->
+    <rect x="368" y="91" width="82" height="8" fill="#0e0e0e" stroke="rgba(255,255,255,0.12)" stroke-width="0.6" rx="1"/>
+    <text x="409" y="97" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">AUDFLY X2</text>
+
+    <!-- DISPLAY -->
+    <rect x="330" y="120" width="200" height="352" fill="#04040a" stroke="rgba(40,40,70,0.5)" stroke-width="1.2" rx="1"/>
+    <!-- VESA mount points -->
+    <circle cx="370" cy="245" r="3" fill="none" stroke="rgba(60,60,120,0.4)" stroke-width="1"/>
+    <circle cx="490" cy="245" r="3" fill="none" stroke="rgba(60,60,120,0.4)" stroke-width="1"/>
+    <circle cx="370" cy="395" r="3" fill="none" stroke="rgba(60,60,120,0.4)" stroke-width="1"/>
+    <circle cx="490" cy="395" r="3" fill="none" stroke="rgba(60,60,120,0.4)" stroke-width="1"/>
+
+    <!-- ELECTRONICS BAY -->
+    <!-- Beelink SER5 Pro -->
+    <rect x="338" y="488" width="72" height="56" fill="#0e140e" stroke="rgba(26,140,110,0.5)" stroke-width="1.2" rx="3"/>
+    <text x="374" y="512" text-anchor="middle" font-size="7" fill="rgba(26,140,110,0.7)" font-family="JetBrains Mono" font-weight="500">BEELINK</text>
+    <text x="374" y="524" text-anchor="middle" font-size="6" fill="rgba(26,140,110,0.4)" font-family="JetBrains Mono">SER5 PRO</text>
+
+    <!-- Power Strip -->
+    <rect x="420" y="488" width="110" height="30" fill="#111" stroke="rgba(255,136,0,0.35)" stroke-width="0.8" rx="2"/>
+    <text x="475" y="507" text-anchor="middle" font-size="6.5" fill="rgba(255,136,0,0.5)" font-family="JetBrains Mono">POWER STRIP</text>
+
+    <!-- 12V LED Driver -->
+    <rect x="420" y="524" width="60" height="20" fill="#111" stroke="rgba(255,215,110,0.35)" stroke-width="0.8" rx="2"/>
+    <text x="450" y="538" text-anchor="middle" font-size="6" fill="rgba(255,215,110,0.5)" font-family="JetBrains Mono">12V LED</text>
+
+    <!-- CABLES -->
+    <path d="M 400 488 Q 420 475 430 460 Q 435 450 435 445" stroke="rgba(0,190,190,0.5)" stroke-width="1.8" fill="none" stroke-dasharray="5,3"/>
+    <path d="M 370 488 Q 370 460 516 460 Q 520 455 520 113" stroke="rgba(80,130,255,0.45)" stroke-width="1.3" fill="none" stroke-dasharray="4,3"/>
+    <path d="M 350 488 Q 348 465 342 465 Q 338 460 338 113" stroke="rgba(140,170,255,0.4)" stroke-width="1.3" fill="none" stroke-dasharray="4,3"/>
+    <path d="M 395 500 Q 408 470 409 460 Q 410 440 410 120" stroke="rgba(80,220,80,0.4)" stroke-width="1.3" fill="none" stroke-dasharray="4,3"/>
+
+    <!-- POWER EXIT -->
+    <rect x="416" y="586" width="28" height="16" fill="#0a0a0a" stroke="rgba(255,136,0,0.5)" stroke-width="1.2" rx="2"/>
+    <text x="430" y="597" text-anchor="middle" font-size="6" fill="rgba(255,136,0,0.6)" font-family="JetBrains Mono">&rarr; WALL</text>
+
+    <!-- ══ LABELS LEFT ══ -->
+    <line x1="317" y1="86" x2="176" y2="65" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="170" y="61" text-anchor="end" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">Exhaust Vent</text>
+    <text x="170" y="75" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">Hot air out</text>
+
+    <line x1="328" y1="106" x2="176" y2="115" stroke="rgba(90,180,130,0.2)" stroke-width="0.8"/>
+    <text x="170" y="111" text-anchor="end" font-size="10.5" fill="rgba(90,190,140,0.8)" font-family="Inter" font-weight="600">Logitech Brio 4K</text>
+    <text x="170" y="125" text-anchor="end" font-size="9" fill="rgba(90,180,130,0.35)" font-family="JetBrains Mono">Face Capture</text>
+
+    <line x1="317" y1="150" x2="176" y2="170" stroke="rgba(255,215,110,0.15)" stroke-width="0.8"/>
+    <text x="170" y="166" text-anchor="end" font-size="10.5" fill="rgba(255,215,110,0.75)" font-family="Inter" font-weight="600">COB LED Strips</text>
+    <text x="170" y="180" text-anchor="end" font-size="9" fill="rgba(255,215,110,0.3)" font-family="JetBrains Mono">CRI90+ Border Glow</text>
+
+    <line x1="330" y1="296" x2="176" y2="296" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="170" y="292" text-anchor="end" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">Samsung QN90 55&quot;</text>
+    <text x="170" y="306" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">Portrait &bull; VESA 400&times;300</text>
+
+    <line x1="338" y1="516" x2="176" y2="520" stroke="rgba(26,140,110,0.25)" stroke-width="0.8"/>
+    <text x="170" y="516" text-anchor="end" font-size="10.5" fill="rgba(26,200,150,0.8)" font-family="Inter" font-weight="600">Beelink SER5 Pro</text>
+    <text x="170" y="530" text-anchor="end" font-size="9" fill="rgba(26,140,110,0.4)" font-family="JetBrains Mono">Ryzen 7 5800H &bull; 16GB</text>
+
+    <line x1="317" y1="594" x2="176" y2="612" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="170" y="608" text-anchor="end" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">Intake Vent</text>
+    <text x="170" y="622" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">Cool air in</text>
+
+    <!-- ══ LABELS RIGHT ══ -->
+    <line x1="450" y1="112" x2="675" y2="80" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="680" y="76" text-anchor="start" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">2&times; Noctua NF-A8</text>
+    <text x="680" y="90" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">17.7 dBA &bull; Exhaust</text>
+
+    <line x1="534" y1="105" x2="675" y2="118" stroke="rgba(90,110,200,0.2)" stroke-width="0.8"/>
+    <text x="680" y="114" text-anchor="start" font-size="10.5" fill="rgba(120,140,220,0.8)" font-family="Inter" font-weight="600">Orbbec Gemini 335L</text>
+    <text x="680" y="128" text-anchor="start" font-size="9" fill="rgba(90,110,200,0.35)" font-family="JetBrains Mono">Depth &bull; Gesture Tracking</text>
+
+    <line x1="534" y1="290" x2="675" y2="270" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+    <text x="680" y="266" text-anchor="start" font-size="10.5" fill="rgba(255,255,255,0.5)" font-family="Inter" font-weight="600">VESA Mount Plate</text>
+    <text x="680" y="280" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">400&times;300</text>
+
+    <line x1="530" y1="502" x2="675" y2="495" stroke="rgba(255,136,0,0.2)" stroke-width="0.8"/>
+    <text x="680" y="491" text-anchor="start" font-size="10.5" fill="rgba(255,160,50,0.7)" font-family="Inter" font-weight="600">Power Strip</text>
+    <text x="680" y="505" text-anchor="start" font-size="9" fill="rgba(255,136,0,0.3)" font-family="JetBrains Mono">6-outlet &bull; Single cable out</text>
+
+    <line x1="480" y1="534" x2="675" y2="540" stroke="rgba(255,215,110,0.15)" stroke-width="0.8"/>
+    <text x="680" y="536" text-anchor="start" font-size="10.5" fill="rgba(255,215,110,0.7)" font-family="Inter" font-weight="600">12V LED Driver</text>
+    <text x="680" y="550" text-anchor="start" font-size="9" fill="rgba(255,215,110,0.3)" font-family="JetBrains Mono">Dimmable &bull; COB strips</text>
+
+    <!-- Cable Legend -->
+    <text x="310" y="660" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono" font-weight="500">CABLES</text>
+    <line x1="354" y1="656" x2="374" y2="656" stroke="rgba(0,190,190,0.5)" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="378" y="659" font-size="8.5" fill="rgba(0,190,190,0.6)" font-family="JetBrains Mono">HDMI</text>
+    <line x1="414" y1="656" x2="434" y2="656" stroke="rgba(80,130,255,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="438" y="659" font-size="8.5" fill="rgba(80,130,255,0.6)" font-family="JetBrains Mono">USB-C</text>
+    <line x1="480" y1="656" x2="500" y2="656" stroke="rgba(140,170,255,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="504" y="659" font-size="8.5" fill="rgba(140,170,255,0.6)" font-family="JetBrains Mono">USB-A</text>
+    <line x1="544" y1="656" x2="564" y2="656" stroke="rgba(80,220,80,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="568" y="659" font-size="8.5" fill="rgba(80,220,80,0.6)" font-family="JetBrains Mono">Audio</text>
+    <line x1="600" y1="656" x2="620" y2="656" stroke="rgba(255,136,0,0.6)" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="624" y="659" font-size="8.5" fill="rgba(255,136,0,0.6)" font-family="JetBrains Mono">Power</text>
+  </svg>
+  </div>
+  <div class="footer-mark">MythOS Systems, Inc.</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PAGE 3: SIDE CROSS-SECTION                                   -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-label">MythOS Smart Mirror &mdash; Diagram 3 of 6</div>
+    <div class="page-title">Side View &mdash; Cross Section</div>
+    <div class="page-sub">Right Side &mdash; 3.5&quot; Enclosure Depth</div>
+  </div>
+  <div class="svg-wrap">
+  <svg width="980" height="680" viewBox="0 0 980 680" xmlns="http://www.w3.org/2000/svg">
+    <!-- depth=3.5" → 70px, height=65" → 455px -->
+    <!-- OUTER FRAME -->
+    <rect x="400" y="100" width="70" height="455" fill="none" stroke="#4a4a50" stroke-width="5" rx="2"/>
+
+    <!-- GLASS (front) -->
+    <rect x="398" y="100" width="7" height="455" fill="rgba(100,160,200,0.25)" stroke="rgba(100,160,200,0.4)" stroke-width="0.8"/>
+
+    <!-- BACK PANEL -->
+    <rect x="465" y="100" width="7" height="455" fill="#1a1a1a" stroke="#333" stroke-width="0.8"/>
+
+    <!-- TOP BAR (above glass) -->
+    <rect x="394" y="78" width="80" height="22" fill="#0e0e0e" stroke="#222" stroke-width="1" rx="2"/>
+
+    <!-- Display cross-section -->
+    <rect x="410" y="112" width="12" height="290" fill="#060610" stroke="rgba(40,40,80,0.5)" stroke-width="1"/>
+
+    <!-- Beelink cross-section -->
+    <rect x="415" y="432" width="40" height="18" fill="#0e140e" stroke="rgba(26,140,110,0.5)" stroke-width="0.8" rx="2"/>
+
+    <!-- LED strip (front, behind glass) -->
+    <rect x="405" y="108" width="4" height="440" fill="rgba(255,215,110,0.15)" stroke="rgba(255,215,110,0.3)" stroke-width="0.4"/>
+
+    <!-- Airflow arrows -->
+    <path d="M 445 540 L 445 510" stroke="rgba(68,170,255,0.4)" stroke-width="1.5" fill="none" marker-end="url(#arrowUp)"/>
+    <path d="M 445 480 L 445 430" stroke="rgba(68,170,255,0.4)" stroke-width="1.5" fill="none"/>
+    <path d="M 445 400 L 445 130" stroke="rgba(68,170,255,0.4)" stroke-width="1.5" fill="none"/>
+    <path d="M 445 120 L 445 100" stroke="rgba(255,100,50,0.4)" stroke-width="1.5" fill="none"/>
+    <text x="460" y="300" font-size="8" fill="rgba(68,170,255,0.35)" font-family="JetBrains Mono" transform="rotate(90,460,300)">AIRFLOW &uarr;</text>
+
+    <!-- ══ LABELS ══ -->
+    <line x1="394" y1="89" x2="250" y2="75" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="245" y="71" text-anchor="end" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">Top Bar Housing</text>
+    <text x="245" y="85" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">Brio + Orbbec + Audfly</text>
+
+    <line x1="398" y1="250" x2="250" y2="220" stroke="rgba(100,160,200,0.15)" stroke-width="0.8"/>
+    <text x="245" y="216" text-anchor="end" font-size="10.5" fill="rgba(130,180,210,0.7)" font-family="Inter" font-weight="600">Glass</text>
+    <text x="245" y="230" text-anchor="end" font-size="9" fill="rgba(100,160,200,0.3)" font-family="JetBrains Mono">70R/30T &bull; 30&quot;&times;65&quot;</text>
+
+    <line x1="422" y1="250" x2="600" y2="210" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="605" y="206" text-anchor="start" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">Samsung QN90 55&quot;</text>
+    <text x="605" y="220" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">12mm depth &bull; Portrait</text>
+
+    <line x1="455" y1="441" x2="600" y2="435" stroke="rgba(26,140,110,0.25)" stroke-width="0.8"/>
+    <text x="605" y="431" text-anchor="start" font-size="10.5" fill="rgba(26,200,150,0.8)" font-family="Inter" font-weight="600">Beelink SER5 Pro</text>
+    <text x="605" y="445" text-anchor="start" font-size="9" fill="rgba(26,140,110,0.4)" font-family="JetBrains Mono">Lower electronics bay</text>
+
+    <line x1="472" y1="300" x2="600" y2="320" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+    <text x="605" y="316" text-anchor="start" font-size="10.5" fill="rgba(255,255,255,0.5)" font-family="Inter" font-weight="600">Back Panel</text>
+    <text x="605" y="330" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">Aluminum mesh vents</text>
+
+    <line x1="409" y1="300" x2="250" y2="340" stroke="rgba(255,215,110,0.15)" stroke-width="0.8"/>
+    <text x="245" y="336" text-anchor="end" font-size="10.5" fill="rgba(255,215,110,0.7)" font-family="Inter" font-weight="600">COB LED Strip</text>
+    <text x="245" y="350" text-anchor="end" font-size="9" fill="rgba(255,215,110,0.3)" font-family="JetBrains Mono">Behind sandblasted border</text>
+
+    <!-- DEPTH DIMENSION -->
+    <line x1="398" y1="600" x2="472" y2="600" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+    <line x1="398" y1="594" x2="398" y2="606" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+    <line x1="472" y1="594" x2="472" y2="606" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+    <text x="435" y="620" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">3.5&quot; deep</text>
+
+    <!-- HEIGHT DIMENSION -->
+    <line x1="340" y1="100" x2="340" y2="555" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="334" y1="100" x2="346" y2="100" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="334" y1="555" x2="346" y2="555" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="326" y="330" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.15)" font-family="JetBrains Mono" transform="rotate(-90,326,330)">65&quot;</text>
+
+    <!-- WALL indicator -->
+    <rect x="480" y="80" width="6" height="495" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" stroke-dasharray="8,4"/>
+    <text x="500" y="560" font-size="9" fill="rgba(255,255,255,0.12)" font-family="JetBrains Mono" transform="rotate(-90,500,560)">WALL SURFACE</text>
+  </svg>
+  </div>
+  <div class="footer-mark">MythOS Systems, Inc.</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PAGE 4: TOP VIEW                                             -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-label">MythOS Smart Mirror &mdash; Diagram 4 of 6</div>
+    <div class="page-title">Top View</div>
+    <div class="page-sub">Looking Down &mdash; Top Bar, Exhaust Fans, Component Placement</div>
+  </div>
+  <div class="svg-wrap">
+  <svg width="980" height="400" viewBox="0 0 980 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- 30"=540px, 3.5"=63px -->
+    <!-- OUTER FRAME -->
+    <rect x="220" y="145" width="540" height="63" fill="#111" stroke="#4a4a50" stroke-width="4" rx="2"/>
+
+    <!-- TOP BAR (above, protruding forward) -->
+    <rect x="280" y="125" width="420" height="24" fill="#0c0c0c" stroke="#222" stroke-width="1" rx="2"/>
+
+    <!-- Brio in top bar -->
+    <circle cx="320" cy="137" r="8" fill="#080808" stroke="rgba(90,180,130,0.4)" stroke-width="1"/>
+    <circle cx="320" cy="137" r="3" fill="rgba(70,150,110,0.4)"/>
+
+    <!-- Orbbec in top bar -->
+    <rect x="645" y="130" width="28" height="14" fill="#0a0a14" stroke="rgba(90,110,200,0.4)" stroke-width="0.8" rx="2"/>
+
+    <!-- Speaker in top bar -->
+    <rect x="380" y="131" width="200" height="12" fill="#080808" stroke="rgba(255,255,255,0.08)" stroke-width="0.5" rx="1"/>
+    <text x="480" y="140" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.15)" font-family="JetBrains Mono">AUDFLY X2</text>
+
+    <!-- Glass front edge -->
+    <rect x="220" y="145" width="540" height="6" fill="rgba(100,160,200,0.2)" stroke="rgba(100,160,200,0.3)" stroke-width="0.5"/>
+
+    <!-- Mesh vent -->
+    <rect x="228" y="152" width="524" height="49" fill="#080808" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+    <!-- Mesh lines -->
+    <line x1="228" y1="161" x2="752" y2="161" stroke="rgba(255,255,255,0.03)" stroke-width="0.8"/>
+    <line x1="228" y1="170" x2="752" y2="170" stroke="rgba(255,255,255,0.03)" stroke-width="0.8"/>
+    <line x1="228" y1="179" x2="752" y2="179" stroke="rgba(255,255,255,0.03)" stroke-width="0.8"/>
+    <line x1="228" y1="188" x2="752" y2="188" stroke="rgba(255,255,255,0.03)" stroke-width="0.8"/>
+
+    <!-- 2x Noctua fans -->
+    <circle cx="420" cy="175" r="20" fill="#0a0a0a" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <circle cx="420" cy="175" r="13" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+    <circle cx="560" cy="175" r="20" fill="#0a0a0a" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <circle cx="560" cy="175" r="13" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+
+    <!-- Back panel -->
+    <rect x="220" y="201" width="540" height="7" fill="#1a1a1a" stroke="#333" stroke-width="0.5"/>
+
+    <!-- Exhaust arrows -->
+    <text x="490" y="230" text-anchor="middle" font-size="10" fill="rgba(255,100,50,0.4)" font-family="JetBrains Mono" font-weight="500">&uarr; HOT AIR EXHAUST &uarr;</text>
+
+    <!-- ══ LABELS ══ -->
+    <line x1="320" y1="129" x2="148" y2="100" stroke="rgba(90,180,130,0.2)" stroke-width="0.8"/>
+    <text x="143" y="96" text-anchor="end" font-size="10.5" fill="rgba(90,190,140,0.8)" font-family="Inter" font-weight="600">Logitech Brio 4K</text>
+
+    <line x1="659" y1="129" x2="820" y2="100" stroke="rgba(90,110,200,0.2)" stroke-width="0.8"/>
+    <text x="825" y="96" text-anchor="start" font-size="10.5" fill="rgba(120,140,220,0.8)" font-family="Inter" font-weight="600">Orbbec Gemini 335L</text>
+
+    <line x1="420" y1="155" x2="148" y2="180" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+    <text x="143" y="176" text-anchor="end" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">2&times; Noctua NF-A8</text>
+    <text x="143" y="190" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.2)" font-family="JetBrains Mono">80mm &bull; Top Exhaust</text>
+
+    <line x1="490" y1="148" x2="825" y2="150" stroke="rgba(100,160,200,0.12)" stroke-width="0.8"/>
+    <text x="830" y="146" text-anchor="start" font-size="10.5" fill="rgba(130,180,210,0.7)" font-family="Inter" font-weight="600">Glass Front Edge</text>
+
+    <line x1="490" y1="204" x2="825" y2="210" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+    <text x="830" y="206" text-anchor="start" font-size="10.5" fill="rgba(255,255,255,0.5)" font-family="Inter" font-weight="600">Back Panel</text>
+
+    <!-- Dimensions -->
+    <line x1="220" y1="280" x2="760" y2="280" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="220" y1="274" x2="220" y2="286" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="760" y1="274" x2="760" y2="286" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="490" y="298" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.15)" font-family="JetBrains Mono">30&quot;</text>
+
+    <line x1="810" y1="145" x2="810" y2="208" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="804" y1="145" x2="816" y2="145" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="804" y1="208" x2="816" y2="208" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="830" y="181" text-anchor="start" font-size="10" fill="rgba(255,255,255,0.15)" font-family="JetBrains Mono">3.5&quot;</text>
+
+    <text x="490" y="140" text-anchor="middle" font-size="8" fill="rgba(100,160,200,0.3)" font-family="JetBrains Mono" font-weight="500">&larr; FRONT &rarr;</text>
+    <text x="490" y="212" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.12)" font-family="JetBrains Mono" font-weight="500">&larr; BACK &rarr;</text>
+  </svg>
+  </div>
+  <div class="footer-mark">MythOS Systems, Inc.</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PAGE 5: ELECTRONICS BAY                                      -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-label">MythOS Smart Mirror &mdash; Diagram 5 of 6</div>
+    <div class="page-title">Electronics Bay Detail</div>
+    <div class="page-sub">Lower Section &mdash; Compute, Power Distribution, Cable Routing</div>
+  </div>
+  <div class="svg-wrap">
+  <svg width="980" height="500" viewBox="0 0 980 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Bay area -->
+    <rect x="190" y="60" width="500" height="340" fill="rgba(255,255,255,0.01)" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" rx="4" stroke-dasharray="8,4"/>
+    <text x="440" y="50" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.12)" font-family="JetBrains Mono" letter-spacing="3">LOWER ELECTRONICS BAY</text>
+
+    <!-- Beelink SER5 Pro -->
+    <rect x="220" y="100" width="160" height="120" fill="#0a140e" stroke="rgba(26,140,110,0.5)" stroke-width="1.5" rx="6"/>
+    <text x="300" y="148" text-anchor="middle" font-size="16" fill="rgba(26,200,150,0.7)" font-family="Inter" font-weight="600">Beelink SER5 Pro</text>
+    <text x="300" y="168" text-anchor="middle" font-size="10" fill="rgba(26,140,110,0.4)" font-family="JetBrains Mono">AMD Ryzen 7 5800H</text>
+    <text x="300" y="184" text-anchor="middle" font-size="10" fill="rgba(26,140,110,0.4)" font-family="JetBrains Mono">16GB RAM &bull; 500GB SSD</text>
+    <text x="300" y="200" text-anchor="middle" font-size="10" fill="rgba(26,140,110,0.4)" font-family="JetBrains Mono">Windows 11</text>
+    <!-- Ports -->
+    <rect x="380" y="120" width="4" height="10" fill="rgba(0,190,190,0.5)" rx="1"/><text x="390" y="129" font-size="7" fill="rgba(0,190,190,0.6)" font-family="JetBrains Mono">HDMI</text>
+    <rect x="380" y="140" width="4" height="10" fill="rgba(80,130,255,0.5)" rx="1"/><text x="390" y="149" font-size="7" fill="rgba(80,130,255,0.6)" font-family="JetBrains Mono">USB-C</text>
+    <rect x="380" y="160" width="4" height="10" fill="rgba(140,170,255,0.5)" rx="1"/><text x="390" y="169" font-size="7" fill="rgba(140,170,255,0.6)" font-family="JetBrains Mono">USB-A</text>
+    <rect x="380" y="180" width="4" height="10" fill="rgba(80,220,80,0.5)" rx="1"/><text x="390" y="189" font-size="7" fill="rgba(80,220,80,0.6)" font-family="JetBrains Mono">3.5mm</text>
+
+    <!-- Power Strip -->
+    <rect x="220" y="260" width="240" height="56" fill="#0e0e0e" stroke="rgba(255,136,0,0.4)" stroke-width="1.2" rx="4"/>
+    <text x="340" y="285" text-anchor="middle" font-size="12" fill="rgba(255,160,50,0.7)" font-family="Inter" font-weight="600">Power Strip (6-outlet)</text>
+    <text x="340" y="302" text-anchor="middle" font-size="9" fill="rgba(255,136,0,0.3)" font-family="JetBrains Mono">Single cable exits to wall</text>
+    <!-- Outlet circles -->
+    <circle cx="250" cy="290" r="6" fill="none" stroke="rgba(255,136,0,0.2)" stroke-width="0.8"/>
+    <circle cx="270" cy="290" r="6" fill="none" stroke="rgba(255,136,0,0.2)" stroke-width="0.8"/>
+    <circle cx="410" cy="290" r="6" fill="none" stroke="rgba(255,136,0,0.2)" stroke-width="0.8"/>
+    <circle cx="430" cy="290" r="6" fill="none" stroke="rgba(255,136,0,0.2)" stroke-width="0.8"/>
+
+    <!-- 12V LED Driver -->
+    <rect x="500" y="100" width="130" height="60" fill="#0e0e0a" stroke="rgba(255,215,110,0.4)" stroke-width="1" rx="4"/>
+    <text x="565" y="128" text-anchor="middle" font-size="11" fill="rgba(255,215,110,0.7)" font-family="Inter" font-weight="600">12V LED Driver</text>
+    <text x="565" y="146" text-anchor="middle" font-size="9" fill="rgba(255,215,110,0.3)" font-family="JetBrains Mono">Dimmable &bull; COB strips</text>
+
+    <!-- Connections up -->
+    <text x="565" y="195" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.1)" font-family="JetBrains Mono">&uarr; To Display</text>
+    <text x="565" y="210" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.1)" font-family="JetBrains Mono">&uarr; To Top Bar</text>
+    <text x="565" y="225" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.1)" font-family="JetBrains Mono">&uarr; To LED Border</text>
+
+    <!-- Connection lines -->
+    <path d="M 384 125 Q 440 125 440 85 Q 440 70 440 60" stroke="rgba(0,190,190,0.4)" stroke-width="1.8" fill="none" stroke-dasharray="5,3"/>
+    <text x="455" y="75" font-size="7" fill="rgba(0,190,190,0.4)" font-family="JetBrains Mono">&rarr; Samsung Display</text>
+
+    <path d="M 384 145 Q 460 145 460 85 Q 460 70 460 60" stroke="rgba(80,130,255,0.35)" stroke-width="1.3" fill="none" stroke-dasharray="4,3"/>
+    <text x="475" y="75" font-size="7" fill="rgba(80,130,255,0.4)" font-family="JetBrains Mono">&rarr; Orbbec Gemini</text>
+
+    <path d="M 384 165 Q 480 165 480 85 Q 480 70 480 60" stroke="rgba(140,170,255,0.35)" stroke-width="1.3" fill="none" stroke-dasharray="4,3"/>
+    <text x="497" y="75" font-size="7" fill="rgba(140,170,255,0.4)" font-family="JetBrains Mono">&rarr; Logitech Brio</text>
+
+    <path d="M 384 185 Q 500 185 500 85 Q 500 70 500 60" stroke="rgba(80,220,80,0.35)" stroke-width="1.3" fill="none" stroke-dasharray="4,3"/>
+    <text x="517" y="75" font-size="7" fill="rgba(80,220,80,0.4)" font-family="JetBrains Mono">&rarr; Audfly Speaker</text>
+
+    <!-- Power exit -->
+    <path d="M 340 316 Q 340 370 340 390" stroke="rgba(255,136,0,0.5)" stroke-width="2" fill="none"/>
+    <rect x="320" y="385" width="40" height="20" fill="#0a0a0a" stroke="rgba(255,136,0,0.5)" stroke-width="1.2" rx="3"/>
+    <text x="340" y="399" text-anchor="middle" font-size="8" fill="rgba(255,136,0,0.6)" font-family="JetBrains Mono" font-weight="500">&rarr; WALL</text>
+
+    <!-- VESA bracket note -->
+    <rect x="500" y="260" width="130" height="40" fill="rgba(255,255,255,0.01)" stroke="rgba(255,255,255,0.06)" stroke-width="0.8" rx="3" stroke-dasharray="4,3"/>
+    <text x="565" y="278" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.25)" font-family="JetBrains Mono">VESA bracket</text>
+    <text x="565" y="292" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.15)" font-family="JetBrains Mono">Beelink mounts here</text>
+  </svg>
+  </div>
+  <div class="footer-mark">MythOS Systems, Inc.</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- PAGE 6: BOTTOM VIEW                                          -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-label">MythOS Smart Mirror &mdash; Diagram 6 of 6</div>
+    <div class="page-title">Bottom View</div>
+    <div class="page-sub">Looking Up &mdash; Cool Air Intake &mdash; Power Cable Exit</div>
+  </div>
+  <div class="svg-wrap">
+  <svg width="980" height="380" viewBox="0 0 980 380" xmlns="http://www.w3.org/2000/svg">
+    <!-- OUTER FRAME -->
+    <rect x="220" y="140" width="540" height="63" fill="#111" stroke="#4a4a50" stroke-width="4" rx="2"/>
+
+    <!-- Glass front edge -->
+    <rect x="220" y="140" width="540" height="6" fill="rgba(100,160,200,0.2)" stroke="rgba(100,160,200,0.3)" stroke-width="0.5"/>
+
+    <!-- Back panel edge -->
+    <rect x="220" y="197" width="540" height="6" fill="#1a1a1a" stroke="#333" stroke-width="0.5"/>
+
+    <!-- Mesh vent -->
+    <rect x="228" y="147" width="524" height="49" fill="#080808" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+    <line x1="228" y1="156" x2="752" y2="156" stroke="rgba(255,255,255,0.025)" stroke-width="0.8"/>
+    <line x1="228" y1="165" x2="752" y2="165" stroke="rgba(255,255,255,0.025)" stroke-width="0.8"/>
+    <line x1="228" y1="174" x2="752" y2="174" stroke="rgba(255,255,255,0.025)" stroke-width="0.8"/>
+    <line x1="228" y1="183" x2="752" y2="183" stroke="rgba(255,255,255,0.025)" stroke-width="0.8"/>
+
+    <!-- Power cable exit -->
+    <circle cx="490" cy="200" r="10" fill="#0a0a0a" stroke="rgba(255,136,0,0.5)" stroke-width="1.5"/>
+    <circle cx="490" cy="200" r="4" fill="rgba(255,136,0,0.3)"/>
+
+    <!-- Noctua fan (intake, 1x) -->
+    <circle cx="490" cy="171" r="22" fill="#0a0a0a" stroke="rgba(68,170,255,0.2)" stroke-width="1"/>
+    <circle cx="490" cy="171" r="14" fill="none" stroke="rgba(68,170,255,0.08)" stroke-width="0.8"/>
+
+    <!-- Airflow arrows -->
+    <text x="490" y="118" text-anchor="middle" font-size="10" fill="rgba(68,170,255,0.45)" font-family="JetBrains Mono" font-weight="500">&darr; COOL AIR INTAKE &darr;</text>
+    <line x1="400" y1="124" x2="400" y2="140" stroke="rgba(68,170,255,0.3)" stroke-width="1.5"/>
+    <line x1="490" y1="124" x2="490" y2="140" stroke="rgba(68,170,255,0.3)" stroke-width="1.5"/>
+    <line x1="580" y1="124" x2="580" y2="140" stroke="rgba(68,170,255,0.3)" stroke-width="1.5"/>
+
+    <!-- ══ LABELS ══ -->
+    <line x1="490" y1="171" x2="825" y2="155" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+    <text x="830" y="151" text-anchor="start" font-size="10.5" fill="rgba(255,255,255,0.6)" font-family="Inter" font-weight="600">Noctua NF-A8 (Intake)</text>
+    <text x="830" y="165" text-anchor="start" font-size="9" fill="rgba(68,170,255,0.4)" font-family="JetBrains Mono">Cool air pulled upward</text>
+
+    <line x1="490" y1="144" x2="825" y2="110" stroke="rgba(100,160,200,0.12)" stroke-width="0.8"/>
+    <text x="830" y="106" text-anchor="start" font-size="10.5" fill="rgba(130,180,210,0.7)" font-family="Inter" font-weight="600">Glass Front Edge</text>
+
+    <line x1="500" y1="202" x2="680" y2="250" stroke="rgba(255,136,0,0.25)" stroke-width="0.8"/>
+    <text x="685" y="246" text-anchor="start" font-size="10.5" fill="rgba(255,160,50,0.7)" font-family="Inter" font-weight="600">Power Cable Exit</text>
+    <text x="685" y="260" text-anchor="start" font-size="9" fill="rgba(255,136,0,0.3)" font-family="JetBrains Mono">Single cable &rarr; in-wall outlet</text>
+
+    <!-- Dimensions -->
+    <line x1="220" y1="290" x2="760" y2="290" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="220" y1="284" x2="220" y2="296" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="760" y1="284" x2="760" y2="296" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="490" y="308" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.15)" font-family="JetBrains Mono">30&quot;</text>
+
+    <line x1="810" y1="140" x2="810" y2="203" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="804" y1="140" x2="816" y2="140" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <line x1="804" y1="203" x2="816" y2="203" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+    <text x="830" y="176" text-anchor="start" font-size="10" fill="rgba(255,255,255,0.15)" font-family="JetBrains Mono">3.5&quot;</text>
+
+    <text x="490" y="135" text-anchor="middle" font-size="8" fill="rgba(100,160,200,0.3)" font-family="JetBrains Mono" font-weight="500">&larr; FRONT &rarr;</text>
+    <text x="490" y="214" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.12)" font-family="JetBrains Mono" font-weight="500">&larr; BACK &rarr;</text>
+  </svg>
+  </div>
+  <div class="footer-mark">MythOS Systems, Inc.</div>
+</div>
+
+<script>
+  // Report height to the embedding page so the iframe can auto-size.
+  function postHeight() {
+    var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ mythosDiagramsHeight: h }, "*");
+    }
+  }
+  window.addEventListener("load", postHeight);
+  window.addEventListener("resize", postHeight);
+  setTimeout(postHeight, 400);
+  setTimeout(postHeight, 1200);
+</script>
+</body>
+</html>
