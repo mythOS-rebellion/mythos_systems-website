@@ -119,7 +119,7 @@ export function FAQ() {
   ];
 
   const handleContact = () => {
-    window.location.href = 'mailto:hello@mythos.systems';
+    window.location.href = 'mailto:hello@mythosrebellion.com';
   };
 
   return (

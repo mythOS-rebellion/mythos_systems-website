@@ -2,7 +2,6 @@ import { Navigation } from '../components/Navigation';
 import { FinalCTA } from '../components/FinalCTA';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { Check, TrendingUp, Users, Zap, DollarSign, Target, BarChart } from 'lucide-react';
-import dashboardImage from 'figma:asset/b1d9c1aa522c744ea594f4f54537ababa600b31c.png';
 import { useState } from 'react';
 import { ProductAccessModal } from '../components/ProductAccessModal';
 import { ContainerScroll } from '../components/ui/container-scroll-animation';
@@ -118,9 +117,9 @@ export function ForBusinessesPage() {
           }
         >
           <img
-            src={dashboardImage}
+            src="/mythos-pro-dashboard.png"
             alt="MythOS Pro Dashboard"
-            className="mx-auto rounded-2xl object-cover h-full w-full object-center md:object-left-top"
+            className="mx-auto h-full w-full rounded-[20px] object-cover object-center"
             draggable={false}
           />
         </ContainerScroll>

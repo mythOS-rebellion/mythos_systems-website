@@ -21,6 +21,53 @@
     <meta name="twitter:description" content="The operating system for local economies. Helping local businesses fight back against Big Tech." />
     <meta name="twitter:image" content="https://mythosrebellion.com/MythOS-favicon.png" />
 
+    <!-- Structured data: helps search engines and AI/LLMs understand and cite the company.
+         Lives in static HTML so non-JS crawlers get it even without rendering the app. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://mythosrebellion.com/#organization",
+          "name": "MythOS",
+          "legalName": "MythOS Systems",
+          "url": "https://mythosrebellion.com",
+          "logo": "https://mythosrebellion.com/MythOS_logo_transparent.png",
+          "slogan": "The Fight for Local",
+          "email": "hello@mythosrebellion.com",
+          "foundingDate": "2026",
+          "description": "MythOS is the operating system for local economies: software, hardware, and payments that help local businesses compete with Big Tech. Its products include MythOS Pro (an AI business operating system with the Mylo assistant), The Network (a hyperlocal discovery app), and a Smart Mirror for barbershops and salons.",
+          "knowsAbout": [
+            "local business software",
+            "hyperlocal discovery",
+            "AI business automation",
+            "local commerce infrastructure",
+            "small business technology"
+          ],
+          "areaServed": [
+            { "@type": "City", "name": "Dallas" },
+            { "@type": "City", "name": "Fort Worth" },
+            { "@type": "City", "name": "San Diego" }
+          ],
+          "sameAs": [
+            "https://x.com/mythosrebellion",
+            "https://www.instagram.com/mythosrebellion/",
+            "https://www.linkedin.com/company/mythos-systems-inc/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://mythosrebellion.com/#website",
+          "name": "MythOS",
+          "url": "https://mythosrebellion.com",
+          "publisher": { "@id": "https://mythosrebellion.com/#organization" },
+          "description": "The operating system for local economies. Helping local businesses fight back against Big Tech."
+        }
+      ]
+    }
+    </script>
+
     <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
   </head>
 

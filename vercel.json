@@ -1,4 +1,6 @@
 {
+  "buildCommand": "pnpm exec playwright install chromium || true; pnpm run build:static",
+  "outputDirectory": "dist",
   "rewrites": [
     { "source": "/((?!assets/|.*\\.[a-zA-Z0-9]+$).*)", "destination": "/index.html" }
   ]

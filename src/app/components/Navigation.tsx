@@ -4,7 +4,8 @@ import { Menu, X } from 'lucide-react';
 const navItems: { label: string; page: string }[] = [
   { label: "Products", page: "products" },
   { label: "For Businesses", page: "business" },
-  { label: "About Us", page: "about" },
+  { label: "Events", page: "events" },
+  { label: "Manifesto", page: "manifesto" },
   { label: "For Investors", page: "investors" },
 ];
 
