@@ -44,7 +44,7 @@ export function AboutUsPage() {
                 The same systems that killed local commerce killed community. Apps built to maximize engagement keep you scrolling feeds instead of walking streets. Designed for extraction, not exploration. Your attention gets monetized, your data gets sold, and wealth flows out of your neighborhood to data centers thousands of miles away.
               </p>
               <p>
-                But visibility is only half the battle. Corporate chains have entire teams—marketing, sales, tech, operations. Small business owners are juggling twenty roles at once. While monopolies deploy custom software and AI infrastructure to stay ahead, local businesses are stuck with tools that weren't built for them.
+                But visibility is only half the battle. Corporate chains have entire teams - marketing, sales, tech, operations. Small business owners are juggling twenty roles at once. While monopolies deploy custom software and AI infrastructure to stay ahead, local businesses are stuck with tools that weren't built for them.
               </p>
             </div>
           </div>

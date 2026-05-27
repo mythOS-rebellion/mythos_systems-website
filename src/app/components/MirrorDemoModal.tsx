@@ -48,7 +48,7 @@ export function MirrorDemoModal({ isOpen, onClose }: MirrorDemoModalProps) {
 
       <iframe
         src={DEMO_URL}
-        title="MythOS Smart Mirror — interactive build"
+        title="MythOS Smart Mirror - interactive build"
         className="h-full w-full border-0"
         allow="accelerometer; gyroscope; fullscreen"
       />

@@ -22,13 +22,13 @@ export function ForBusinessesPage() {
     {
       icon: <Zap className="w-8 h-8" />,
       title: 'Mylo Handles the Front Desk',
-      description: 'Mylo handles routine questions, booking, and organization — so you\'re not pulled away every five minutes.',
+      description: 'Mylo handles routine questions, booking, and organization - so you\'re not pulled away every five minutes.',
       color: '#0047FF',
     },
     {
       icon: <Target className="w-8 h-8" />,
       title: 'Hyperlocal Reach',
-      description: 'Connect directly with customers in your neighborhood — without competing against global feeds or ad auctions.',
+      description: 'Connect directly with customers in your neighborhood - without competing against global feeds or ad auctions.',
       color: '#9D4EDD',
     },
     {
@@ -40,13 +40,13 @@ export function ForBusinessesPage() {
     {
       icon: <BarChart className="w-8 h-8" />,
       title: 'One View of Your Business',
-      description: 'See revenue, customers, reviews, and trends in one place — without stitching together multiple dashboards.',
+      description: 'See revenue, customers, reviews, and trends in one place - without stitching together multiple dashboards.',
       color: '#0047FF',
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
       title: 'Level the Playing Field',
-      description: 'Use the same class of automation large companies rely on — without enterprise contracts or added complexity.',
+      description: 'Use the same class of automation large companies rely on - without enterprise contracts or added complexity.',
       color: '#9D4EDD',
     },
   ];
@@ -146,7 +146,7 @@ export function ForBusinessesPage() {
             Why Local Businesses Choose MythOS
           </h2>
           <p className="text-lg text-[#B0B0B0] text-center mb-16">
-            MythOS Pro isn't another tool — it's infrastructure built specifically for local businesses.
+            MythOS Pro isn't another tool - it's infrastructure built specifically for local businesses.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

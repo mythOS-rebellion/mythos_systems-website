@@ -48,7 +48,7 @@ export function GlassesDemoModal({ isOpen, onClose }: GlassesDemoModalProps) {
 
       <iframe
         src={DEMO_URL}
-        title="MythOS Glasses — interactive build demo"
+        title="MythOS Glasses - interactive build demo"
         className="h-full w-full border-0"
         allow="accelerometer; gyroscope; magnetometer; xr-spatial-tracking; fullscreen"
       />

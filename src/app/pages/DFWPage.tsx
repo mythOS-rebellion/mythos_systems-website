@@ -157,7 +157,7 @@ export function DFWPage() {
                 </div>
                 <h3 className="text-xl font-bold text-white">Built for Small Business</h3>
               </div>
-              <p className="text-[#B0B0B0]">Not enterprise software scaled down—built for YOU</p>
+              <p className="text-[#B0B0B0]">Not enterprise software scaled down - built for YOU</p>
             </div>
           </div>
 
@@ -222,7 +222,7 @@ export function DFWPage() {
                 MythOS Pro launches here in 2026.
               </p>
               <p className="text-xl text-white">
-                Dallas business owners get first access. Because you're not just customers—you're the reason this exists.
+                Dallas business owners get first access. Because you're not just customers - you're the reason this exists.
               </p>
             </div>
           </div>

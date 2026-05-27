@@ -182,14 +182,14 @@ export function CinematicHero({
   cardDescription = (
     <>
       Discover local businesses, events, and communities in real time. Every purchase earns{" "}
-      <span className="text-white font-semibold">Rebel Points</span> and grows your city&apos;s economy — so you break
+      <span className="text-white font-semibold">Rebel Points</span> and grows your city&apos;s economy - so you break
       free from global feeds and get your city back.
     </>
   ),
   metricValue = 1250,
   metricLabel = "Rebel Points",
   ctaHeading = "Get your city back.",
-  ctaDescription = "Join The Network — reconnect with the local businesses, events, and people that make your city yours.",
+  ctaDescription = "Join The Network - reconnect with the local businesses, events, and people that make your city yours.",
   className,
   ...props
 }: CinematicHeroProps) {
@@ -370,9 +370,9 @@ export function CinematicHero({
                     {/* soft blend between status bar and screenshot */}
                     <div className="absolute top-[34px] left-0 right-0 h-[20px] z-30 pointer-events-none" style={{ background: "linear-gradient(to bottom, #050914 0%, transparent 100%)" }} />
 
-                    {/* App screenshot — sits right below the status bar / dynamic island */}
+                    {/* App screenshot - sits right below the status bar / dynamic island */}
                     <div className="phone-widget absolute top-[34px] left-0 right-0 bottom-0">
-                      <img src={networkPulse} alt="The Network — Local Pulse" className="w-full h-full object-cover" />
+                      <img src={networkPulse} alt="The Network - Local Pulse" className="w-full h-full object-cover" />
                     </div>
                   </div>
                 </div>

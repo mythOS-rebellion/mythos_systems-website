@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 /**
- * Mylo Orb — the Arrakis-style desert-moon planet from MythOS Pro.
+ * Mylo Orb - the Arrakis-style desert-moon planet from MythOS Pro.
  * Ported from mythOS-pro/components/mylo/MyloOrb3DPlanet.tsx (pure CSS, no deps).
  * styled-jsx converted to a scoped <style>, keyframes namespaced (mylo-*),
  * and a `size` prop added (the orb is authored at 280px and scaled to fit).

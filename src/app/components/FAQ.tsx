@@ -33,7 +33,7 @@ export function FAQ() {
       items: [
         {
           question: 'What is MythOS?',
-          answer: 'MythOS is digital infrastructure built to help local businesses compete against corporate monopolies. We provide tools that give small businesses the same advantages that chains spend millions on—visibility, automation, and AI-powered operations.',
+          answer: 'MythOS is digital infrastructure built to help local businesses compete against corporate monopolies. We provide tools that give small businesses the same advantages that chains spend millions on - visibility, automation, and AI-powered operations.',
         },
         {
           question: 'Why did you build this?',
@@ -54,11 +54,11 @@ export function FAQ() {
       items: [
         {
           question: 'What is The Network?',
-          answer: 'A free hyperlocal discovery app that helps you find the best businesses in your neighborhood—not the ones with the biggest ad budgets. It\'s designed for exploration, not extraction.',
+          answer: 'A free hyperlocal discovery app that helps you find the best businesses in your neighborhood - not the ones with the biggest ad budgets. It\'s designed for exploration, not extraction.',
         },
         {
           question: 'How does it work?',
-          answer: 'The Network shows you local businesses based on proximity, quality, and community engagement—not who paid the most for search rankings. You discover real places run by real people in your city.',
+          answer: 'The Network shows you local businesses based on proximity, quality, and community engagement - not who paid the most for search rankings. You discover real places run by real people in your city.',
         },
         {
           question: 'Is it really free?',
@@ -75,7 +75,7 @@ export function FAQ() {
       items: [
         {
           question: 'What is MythOS Pro?',
-          answer: 'AI-powered business automation for $100/month. It includes Mylo, our AI assistant that handles reception, booking, customer service, and operations—giving you the power of an entire team.',
+          answer: 'AI-powered business automation for $100/month. It includes Mylo, our AI assistant that handles reception, booking, customer service, and operations - giving you the power of an entire team.',
         },
         {
           question: 'What can Mylo actually do?',

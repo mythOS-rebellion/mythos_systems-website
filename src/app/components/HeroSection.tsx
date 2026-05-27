@@ -10,7 +10,7 @@ export function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Analytics on these two CTAs is delegated to the document-level
-  // click listener in getinfo.js — it walks `closest('[data-mythos-track]')`,
+  // click listener in getinfo.js - it walks `closest('[data-mythos-track]')`,
   // so wrapping the HoverBorderGradient in a <span> with the attr fires
   // the right event_type=click without us having to plumb a tracker call
   // through the (third-party) HBG component's props.

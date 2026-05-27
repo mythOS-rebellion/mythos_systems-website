@@ -17,7 +17,7 @@ interface MyloOrb3DProps {
   primaryColor?: string | null;
 }
 
-// Hex of the default orb color — the Mars orange this orb was originally
+// Hex of the default orb color - the Mars orange this orb was originally
 // designed around. All hue-shifts are measured relative to this hue.
 const DEFAULT_ORB_HEX = "#C1440E";
 
@@ -48,7 +48,7 @@ function hueDeltaFor(color: string | null | undefined): number {
   if (!color) return 0;
   const hsl = hexToHsl(color);
   if (!hsl) return 0;
-  // For near-monochrome picks (white/grey), skip rotation — the orb would
+  // For near-monochrome picks (white/grey), skip rotation - the orb would
   // lose all its orange character without any hue to shift onto.
   if (hsl.s < 0.05) return 0;
   let delta = hsl.h - DEFAULT_ORB_HSL.h;
@@ -267,7 +267,7 @@ const ArrakisMaterial = shaderMaterial(
       float centerGlow = 1.0 - smoothstep(0.0, 1.3, distFromCenter);
       centerGlow = pow(centerGlow, 2.5);
       
-      // Hue shift — low-frequency FBM that slowly drifts, giving the orb
+      // Hue shift - low-frequency FBM that slowly drifts, giving the orb
       // regions of warmer/cooler orange instead of one flat hue.
       float hueShift = fbm(pos * 1.2 + vec3(time * 0.04, time * 0.03, -time * 0.05));
       hueShift = smoothstep(-0.35, 0.35, hueShift); // 0..1 mask
@@ -504,7 +504,7 @@ function HaloParticles() {
 }
 
 // --- Flares: rare brief emissions from the surface --------------------------
-// Only ~0-1 visible at any moment. Intentionally sparse — should read as an
+// Only ~0-1 visible at any moment. Intentionally sparse - should read as an
 // occasional flare, not a constant stream.
 const FLARE_COUNT = 5;
 const FLARE_LIFETIME = 1.2;
@@ -529,7 +529,7 @@ function FlarePoints() {
       aDir[i * 3 + 0] = Math.sin(phi) * Math.cos(theta);
       aDir[i * 3 + 1] = Math.cos(phi);
       aDir[i * 3 + 2] = Math.sin(phi) * Math.sin(theta);
-      aSpeed[i] = 1.4 + Math.random() * 0.6; // faster — flare shoots outward
+      aSpeed[i] = 1.4 + Math.random() * 0.6; // faster - flare shoots outward
       aHue[i] = 0.55 + Math.random() * 0.45; // bias bright
     }
     g.setAttribute("position", new THREE.BufferAttribute(positions, 3));
@@ -548,7 +548,7 @@ function FlarePoints() {
           uSize: { value: 36 * (size.width / REFERENCE_WIDTH) },
           uOpacity: { value: 0.85 },
           uLifetime: { value: FLARE_LIFETIME },
-          uCycle: { value: 10.0 }, // full cycle per particle — gives quiet gaps
+          uCycle: { value: 10.0 }, // full cycle per particle - gives quiet gaps
         },
         vertexShader: `
           attribute float aBirth;
@@ -565,7 +565,7 @@ function FlarePoints() {
           void main() {
             // Each particle cycles every uCycle seconds but is only visible for
             // uLifetime of that window. With 5 particles × 6s cycle × 1.2s
-            // visible each, on average ~1 flare visible at a time — sometimes
+            // visible each, on average ~1 flare visible at a time - sometimes
             // zero, sometimes two briefly overlapping.
             float localT = mod(uTime - aBirth, uCycle);
             if (localT > uLifetime) {
@@ -589,7 +589,7 @@ function FlarePoints() {
             gl_PointSize = uSize * (1.0 / max(-mvPos.z, 0.1)) * (1.0 - age * 0.7);
 
             vHue = aHue;
-            // Sharp in, fast out — brief blip rather than a lingering glow.
+            // Sharp in, fast out - brief blip rather than a lingering glow.
             vAlpha = smoothstep(0.0, 0.08, age) * (1.0 - smoothstep(0.35, 0.95, age));
           }
         `,
@@ -672,7 +672,7 @@ export default function MyloOrb3D({ showText = true, customText, onOrbClick, pan
   const orbMood: string = 'idle';
   const hueShift = useMemo(() => hueDeltaFor(primaryColor ?? null), [primaryColor]);
 
-  // Drive mood animations (celebrate glow, alert shake) on every orb instance —
+  // Drive mood animations (celebrate glow, alert shake) on every orb instance - 
   // home page, corner, preview, etc. The shader canvas is never touched.
   useEffect(() => {
     if (reduceMotion) return;
@@ -706,7 +706,7 @@ export default function MyloOrb3D({ showText = true, customText, onOrbClick, pan
   }, [orbMood, moodControls, reduceMotion]);
 
   const handleClick = () => {
-    // Imperative scale bounce — ~180ms total. Skipped for reduced-motion users.
+    // Imperative scale bounce - ~180ms total. Skipped for reduced-motion users.
     if (!reduceMotion) {
       bounceControls.start({
         scale: [1, 0.92, 1.05, 1],
@@ -725,7 +725,7 @@ export default function MyloOrb3D({ showText = true, customText, onOrbClick, pan
 
   return (
     <div className="text-center">
-      {/* 3D Canvas — nested motion divs: outer drives mood (filter + shake),
+      {/* 3D Canvas - nested motion divs: outer drives mood (filter + shake),
           inner drives click bounce (scale). Shader Canvas is never touched. */}
       <motion.div
         className="mx-auto cursor-pointer mylo-orb-container"

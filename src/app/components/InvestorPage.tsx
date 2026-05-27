@@ -53,18 +53,18 @@ export function InvestorPage() {
   const [mirrorOpen, setMirrorOpen] = useState(false);
 
   const pillars = [
-    { label: 'The market', desc: '$40B in local-business software, $7–10B in smart mirrors, and a slice of multi-trillion local commerce. We sit on top of all of it.', color: '#0047FF' },
-    { label: 'The moat', desc: 'Reinforcing edges — SaaS depth, hardware lock-in, 0.7% payments, one AI brain — and The Network capturing hyper-local behavioral data no one else can touch.', color: '#9D4EDD' },
-    { label: 'The entry', desc: 'A $500K bridge today, ahead of a priced $3–5M round. Early — by design.', color: '#FF4500' },
+    { label: 'The market', desc: '$40B in local-business software, $7-10B in smart mirrors, and a slice of multi-trillion local commerce. We sit on top of all of it.', color: '#0047FF' },
+    { label: 'The moat', desc: 'Reinforcing edges - SaaS depth, hardware lock-in, 0.7% payments, one AI brain - and The Network capturing hyper-local behavioral data no one else can touch.', color: '#9D4EDD' },
+    { label: 'The entry', desc: 'A $500K bridge today, ahead of a priced $3-5M round. Early - by design.', color: '#FF4500' },
   ];
 
   const mirrorSteps = [
-    { icon: <Eye size={20} />, title: 'Client sits down', desc: 'The mirror activates — no app, no friction.' },
+    { icon: <Eye size={20} />, title: 'Client sits down', desc: 'The mirror activates - no app, no friction.' },
     { icon: <ScanFace size={20} />, title: 'Face capture & analysis', desc: 'It reads face shape, hair, and features in seconds.' },
     { icon: <Hand size={20} />, title: 'Browse styles by gesture', desc: 'Flip through cuts and colors with a wave of the hand.' },
     { icon: <Sparkles size={20} />, title: 'AI previews them', desc: 'Generates a photo-real preview of the client with the cut.' },
-    { icon: <Volume2 size={20} />, title: 'Streaming mode', desc: 'After the consult, the mirror becomes their screen — directional speakers keep the sound in that chair, never bleeding into the next one.' },
-    { icon: <Mic size={20} />, title: 'Talk with Mylo', desc: 'The same AI brain that runs the shop lives in the mirror — clients just talk to Mylo, hands-free.' },
+    { icon: <Volume2 size={20} />, title: 'Streaming mode', desc: 'After the consult, the mirror becomes their screen - directional speakers keep the sound in that chair, never bleeding into the next one.' },
+    { icon: <Mic size={20} />, title: 'Talk with Mylo', desc: 'The same AI brain that runs the shop lives in the mirror - clients just talk to Mylo, hands-free.' },
   ];
 
   const builds = [
@@ -72,7 +72,7 @@ export function InvestorPage() {
       icon: <Wallet size={22} />,
       name: 'MythOS Wallet',
       tag: 'Payments',
-      desc: 'Payments at 0.7% — undercutting the transaction tax and closing the loop.',
+      desc: 'Payments at 0.7% - undercutting the transaction tax and closing the loop.',
       color: '#FF4500',
     },
   ];
@@ -93,7 +93,7 @@ export function InvestorPage() {
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#B0B0B0]">
               Every generational company looked obvious in hindsight and absurd at the time. MythOS is building the
-              operating system for local economies — software, hardware, and payments that compound city by city.
+              operating system for local economies - software, hardware, and payments that compound city by city.
               The bridge round is your seat at the table before the priced round.
             </p>
           </Reveal>
@@ -122,7 +122,7 @@ export function InvestorPage() {
                   <Eyebrow>The thesis · 29 slides</Eyebrow>
                   <h2 className="mythos-headline-medium text-white">The whole story, in five minutes.</h2>
                   <p className="mt-4 text-[#B0B0B0]">
-                    The problem, the operating system, the hardware, the traction, and the ask — read it right here.
+                    The problem, the operating system, the hardware, the traction, and the ask - read it right here.
                   </p>
                 </div>
                 <div className="flex flex-shrink-0 flex-col gap-3 sm:flex-row">
@@ -156,7 +156,7 @@ export function InvestorPage() {
             <div>
               <Eyebrow>The software</Eyebrow>
               <h3 className="text-2xl font-semibold text-white">Check out our software products.</h3>
-              <p className="mt-2 text-[#B0B0B0]">MythOS Pro, The Network, and Mylo — the live products behind the hardware.</p>
+              <p className="mt-2 text-[#B0B0B0]">MythOS Pro, The Network, and Mylo - the live products behind the hardware.</p>
             </div>
             <button
               onClick={() => (window as { navigateTo?: (p: string) => void }).navigateTo?.('products')}
@@ -177,7 +177,7 @@ export function InvestorPage() {
             <h2 className="mythos-headline-large max-w-3xl text-white">A smart mirror at every chair.</h2>
             <p className="mt-5 max-w-2xl text-lg text-[#B0B0B0]">
               Software gets copied. Hardware gets installed. The MythOS Mirror turns every barber and salon chair into
-              an AI experience — and a moat.
+              an AI experience - and a moat.
             </p>
             <button
               onClick={() => setMirrorOpen(true)}
@@ -194,7 +194,7 @@ export function InvestorPage() {
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10">
                 <img
                   src="/mirror.png"
-                  alt="The MythOS Smart Mirror — in-chair hairstyle preview"
+                  alt="The MythOS Smart Mirror - in-chair hairstyle preview"
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -218,13 +218,13 @@ export function InvestorPage() {
               <Reveal delay={0.3}>
                 <p className="border-l-2 border-[#FF4500] pl-4 text-sm italic text-[#B0B0B0]">
                   "Decide with confidence. Cut with confidence." Six mirrors per shop means switching off MythOS is a
-                  hardware rip-out — that's the moat.
+                  hardware rip-out - that's the moat.
                 </p>
               </Reveal>
             </div>
           </div>
 
-          {/* See it live — Minty Barber */}
+          {/* See it live - Minty Barber */}
           <Reveal>
             <div className="mt-12 flex flex-col items-start gap-4 rounded-xl border border-[#0047FF]/30 bg-[#0047FF]/5 p-6 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-[#B0B0B0]">
@@ -242,7 +242,7 @@ export function InvestorPage() {
             </div>
           </Reveal>
 
-          {/* ===== Mylo Glasses — dedicated build under the mirror ===== */}
+          {/* ===== Mylo Glasses - dedicated build under the mirror ===== */}
           <div className="mt-20 border-t border-white/10 pt-16">
             <Reveal>
               <Eyebrow color="#FF4500">On the face</Eyebrow>
@@ -253,7 +253,7 @@ export function InvestorPage() {
                 </span>
               </div>
               <p className="mt-5 max-w-2xl text-lg text-[#B0B0B0]">
-                The mirror is the operating system of the chair. Mylo Glasses are the operating system of the human —
+                The mirror is the operating system of the chair. Mylo Glasses are the operating system of the human - 
                 one premium device with a full in-lens display, putting Mylo on the face of every operator and,
                 eventually, everyone on The Network.
               </p>
@@ -274,7 +274,7 @@ export function InvestorPage() {
                   </div>
                   <h3 className="mb-2 text-lg font-bold text-white">For operators</h3>
                   <p className="text-sm leading-relaxed text-[#B0B0B0]">
-                    Walk in and Mylo briefs you on every client before they sit — last visit's notes, their cut, their
+                    Walk in and Mylo briefs you on every client before they sit - last visit's notes, their cut, their
                     preferences. Ask a question and it answers on your glasses while the result renders on the client's
                     mirror.
                   </p>
@@ -299,7 +299,7 @@ export function InvestorPage() {
                 <h3 className="text-lg font-bold text-white">Profile portability, not facial recognition.</h3>
                 <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#B0B0B0]">
                   Facial recognition tells a business <span className="text-white">who</span> you are. MythOS tells them{" "}
-                  <span className="text-white">who you are, what you need, and how to serve you</span> — from a profile{" "}
+                  <span className="text-white">who you are, what you need, and how to serve you</span> - from a profile{" "}
                   <span className="text-white">you</span> write and control. No biometrics, no surveillance, legally
                   clean. Mylo filters it down to only what's relevant for that business, in that moment.
                 </p>
@@ -308,8 +308,8 @@ export function InvestorPage() {
 
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
               {[
-                { num: '$120B+', label: 'US TAM ceiling — the largest in the MythOS lineup' },
-                { num: '$15–25B', label: 'core B2B across ~3M units — barbershops, salons, restaurants, retail' },
+                { num: '$120B+', label: 'US TAM ceiling - the largest in the MythOS lineup' },
+                { num: '$15-25B', label: 'core B2B across ~3M units - barbershops, salons, restaurants, retail' },
                 { num: '$899', label: 'one premium SKU · Apple-tier hardware margins at scale' },
               ].map((s, i) => (
                 <Reveal key={s.label} delay={0.12 + i * 0.06}>
@@ -365,8 +365,8 @@ export function InvestorPage() {
               How much is <span className="text-[#FF4500]">Big Tech</span> costing your business?
             </h2>
             <p className="mt-5 max-w-2xl text-lg text-[#B0B0B0]">
-              We're quantifying the "Visibility Tax" — what local businesses are forced to spend just to be found
-              online — straight from the source.
+              We're quantifying the "Visibility Tax" - what local businesses are forced to spend just to be found
+              online - straight from the source.
             </p>
           </Reveal>
 
@@ -401,7 +401,7 @@ export function InvestorPage() {
           </div>
           <Reveal>
             <p className="mt-6 text-sm text-[#707070]">
-              The full report drops soon — watch for it in the press.
+              The full report drops soon - watch for it in the press.
             </p>
           </Reveal>
         </div>
@@ -418,7 +418,7 @@ export function InvestorPage() {
               </h2>
               <p className="mt-5 max-w-md text-lg text-[#B0B0B0]">
                 Enough to put mirrors in real chairs, prove the unit economics in one city, and step into a priced
-                <span className="text-white"> $3–5M</span> round from strength.
+                <span className="text-white"> $3-5M</span> round from strength.
               </p>
             </Reveal>
             <Reveal delay={0.1}>

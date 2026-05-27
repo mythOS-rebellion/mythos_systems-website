@@ -113,7 +113,7 @@ export function SanDiegoPage() {
                 </h3>
               </div>
               <p className="text-[#B0B0B0] leading-relaxed">
-                SDSU, USD, Point Loma—we're partnering with frats, sororities, and student orgs to throw events that actually matter. Not another corporate-sponsored mixer. Real parties. Real people. Real community.
+                SDSU, USD, Point Loma - we're partnering with frats, sororities, and student orgs to throw events that actually matter. Not another corporate-sponsored mixer. Real parties. Real people. Real community.
               </p>
             </div>
 
@@ -204,7 +204,7 @@ export function SanDiegoPage() {
             </h2>
             <div className="space-y-6 text-lg text-[#B0B0B0] leading-relaxed">
               <p>
-                The Network isn't just about finding businesses—it's about finding your people.
+                The Network isn't just about finding businesses - it's about finding your people.
               </p>
               <p>
                 Meet up with neighbors at community events. Discover group activities you didn't know existed three blocks away. Join local clubs. Attend that underground art show. Find your crew at the weekly pickup basketball game. See what's actually happening in your city instead of what an algorithm tells you to care about.
@@ -288,7 +288,7 @@ export function SanDiegoPage() {
           </h2>
           <div className="space-y-6 text-xl text-[#B0B0B0] leading-relaxed mb-12 max-w-4xl mx-auto">
             <p>
-              San Diego, you're not just the first city. You're the proof of concept. You're the blueprint. When this works here—and it will—the whole country follows.
+              San Diego, you're not just the first city. You're the proof of concept. You're the blueprint. When this works here - and it will - the whole country follows.
             </p>
             <p className="text-white text-2xl font-bold" style={{ fontFamily: 'var(--font-headline)' }}>
               This is how local comes back.

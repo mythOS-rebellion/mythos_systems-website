@@ -17,7 +17,7 @@ export function Navigation() {
 
   return (
     <>
-      {/* Logo — fixed top-left, transparent, links home */}
+      {/* Logo - fixed top-left, transparent, links home */}
       <button
         onClick={() => handleNavigation("home")}
         aria-label="MythOS home"

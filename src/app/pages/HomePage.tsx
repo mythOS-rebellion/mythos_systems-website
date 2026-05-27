@@ -15,9 +15,9 @@ export function HomePage() {
     <div className="min-h-screen bg-[#000000]">
       <Navigation />
       <MythosHero />
-      {/* Mylo orb section — right under the hero */}
+      {/* Mylo orb section - right under the hero */}
       <section className="relative w-full overflow-hidden bg-[#000000] py-20 md:py-28">
-        {/* Section divider (white) — separates the hero from the Mylo section */}
+        {/* Section divider (white) - separates the hero from the Mylo section */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent z-[2]"></div>
         <div className="relative mx-auto flex max-w-5xl flex-col items-center px-4 text-center">
           <MyloOrbLazy size={420} />
